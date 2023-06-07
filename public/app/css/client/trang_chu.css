@@ -1,0 +1,229 @@
+.home-client{
+    margin: auto 233px;
+    text-align: center;
+}
+
+.menu-trangchu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+/* .check-adress{
+    display: flex;
+} */
+.check-adress select {
+    height: 4rem;
+    width: 14.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    margin-top: 12px;
+}
+.check-in input{
+    height: 4rem;
+    width: 14.5rem;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    margin-top: 12px;
+}
+
+.txt-input-check{
+    margin: 0 3rem;
+    color: white;
+}
+
+
+.check-people {
+display: grid;
+
+}
+.menu-trangchu select, input{
+    font-size: 20px;
+}
+
+.check-people div{
+    background: white;
+    width: 20rem;
+    height: 4rem;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-around;
+}
+#hinden-people{
+    background-color: white;
+    color: black;
+    /* height: auto; */
+    position: absolute;
+    right: 189px;
+    margin-top: 14.5rem;
+    border-radius: 10px;
+    display: none;
+    font-size: 1.3rem;
+    /* text-shadow: 2px 2px 4px #000000; */
+    box-shadow: 1px 0px 7px -1px;
+}
+
+.top-booking{
+    margin-top: 70px;
+}
+
+#hinden-people input{
+    height: 3rem;
+    width: 5rem;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.txt{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+.top1, .top2, .bottom .top1, .bottom .top2, .bottom .top3{
+    border-radius: 15px;
+    color: white;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.top1 button, .top2 button, .bottom .top1 button, .bottom .top2 button, .bottom .top3 button{
+    color: white;
+    font-weight: bolder;
+    font-size: 30px;
+    border: none;
+    text-shadow: 0 0 7px red;
+    background: none;
+    font-family: monospace;
+}
+
+
+.top1{
+    width: 48.5%;
+    height: 22rem;
+    background-image:url("./layout/images/hcm-city.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.top2{
+    width: 48.5%;
+    height: 22rem;
+    background-image:url("./layout/images/ha-noi.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* position: relative; */
+}
+
+.bottom .top1{
+    width: 32%;
+    height: 20rem;
+    background-image:url("./layout/images/da-nang.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.bottom .top2{
+    width: 32%;
+    height: 20rem;
+    background-image:url("./layout/images/Trai\ nghiem\ thanh\ pho\ bien\ Vung\ Tau.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.bottom .top3{
+    width: 32%;
+    height: 20rem;
+    background-image:url("./layout/images/da-lat.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.edit-slide{
+    margin: auto 150px;
+    height: 25em;
+}
+
+.edit-slide .splide__slide{
+    text-align: center;
+}
+
+.edit-slide .size-img{
+    width: 50%;
+    height: 100%;
+}
+
+.edit-slide .content{
+    width: 50%;
+    text-align: initial;
+}
+
+.edit-slide .splide__track{
+    height: 100%;
+}
+
+.search-icon{
+    border: solid white;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 5rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(33, 150, 243);
+    border-radius: 15px;
+    margin-top: 12px;
+}
+
+.search-icon i:hover{
+    font-size: 3rem;
+    color: white;
+}
+
+.search-icon:hover{
+    transform: skew(325deg,26deg);
+}
+
+.top-booking .is-visible{
+    display: flex;
+}
+.content .tenKS{
+    text-shadow: rgb(0, 0, 0) 2px 2px 4px;
+    color: blueviolet;
+    font-size: 3rem;
+    margin-top: 3px;
+    font-weight: bolder;
+}
+.content i{
+    color: lightskyblue;
+    font-size: 2rem;
+    text-shadow: rgb(0, 0, 0) 4px 2px 7px;
+}
+
+.top-booking .edit button{
+    display: none;
+}
+
+.top-booking .edit .slick-list{
+    margin-left: -1px;
+}
+
+.edit-tool{
+
+}

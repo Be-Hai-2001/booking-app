@@ -1,0 +1,65 @@
+#quick-view{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: black;
+    opacity: 0.6;
+}
+
+#content-quickView{
+    width: 80rem;
+    height: 45rem;
+    background: white;
+    position: fixed;
+    top:80;
+    /* border-radius: 2rem; */
+}
+
+body{
+    margin: 0;
+}
+
+.payment-view{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -3rem;
+}
+
+#content-quickView{
+    box-shadow: inset 0px 0px 13px -2px;
+    display: flex;
+    border-top-left-radius: 2rem;
+}
+
+#div-quick-view .hoadon{
+    width: 70%;
+}
+
+#div-quick-view .content{
+    width: 30%;
+    overflow: auto;
+}
+
+#room-main{
+    border-top-left-radius: 2rem;
+    width: 60rem;
+    height: 40rem;
+}
+
+#title-room{
+    text-align: center;
+    font-size: 1.7em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.services{
+    margin-left: 5px;
+}
+
+.services_content ul li{
+    margin-bottom:10px;
+}
+
