@@ -21,7 +21,7 @@
                 <a id="canho" href="">Căn hộ</a>
                 <a href="">Khách sạn</a>
                 <a id="tindulich" href="">Tin du lịch</a>
-                <a href="">Liên hệ</a>
+                <a href="{{ route('lienHe') }}">Liên hệ</a>
             </div>
             <div class="individual menu">
                 <div class="users hidden-repos">

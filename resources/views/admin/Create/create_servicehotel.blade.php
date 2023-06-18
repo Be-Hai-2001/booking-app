@@ -6,6 +6,10 @@
     <div style="display: flex ; justify-content: center">
         <div style="width:20%">
             <label for="hotel_id"> Tên khách sạn: </label>
+            @error('hotel_id')
+                <a style="color:red"> {{ $message }} </a>
+            @enderror
+
             <select name="hotel_id">
                 <option value="">-- Chọn khách sạn --</option>
                 @foreach ($lst as $hotel)
@@ -14,11 +18,18 @@
             </select> <br>
 
             <label for="tenTienIch"> Tên tiện ích: </label>
+            @error('tenTienIch')
+                <a style="color:red"> {{ $message }} </a>
+            @enderror
+
             <input name="tenTienIch"><br>
         </div>
 
         <div style="width:50%">
             <label for="noiDung">Nội dung:</label>
+            @error('noiDung')
+            <a style="color:red"> {{ $message }} </a>
+            @enderror
             <textarea class="ckeditor form-control" name="noiDung"></textarea><br>
         </div>
     </div>

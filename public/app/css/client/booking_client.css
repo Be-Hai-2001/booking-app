@@ -111,6 +111,7 @@
 #ttb-slide {
     text-align: center;
     width: 15rem;
+    height: 30.25rem;
 }
 
   #ttb-slide .splide__pagination--ttb{
@@ -139,4 +140,90 @@ td{
 .black_1_2{
     font-size: 1.2rem;
     /* color: black; */
+}
+
+#top-payment{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+#top-payment .c-n{
+    border-radius: 50%;
+    background-color:rgb(33, 150, 243);;
+    padding: 0.5rem;
+    text-align: center;
+    width: 30px;
+    color: white;
+}
+
+#top-payment .txt-m{
+    margin-left: -25px;
+}
+
+#main-payment{
+    font-size: 1.5rem;
+    margin: auto 14rem;
+    margin-top: 2rem;
+}
+
+.gach{
+    padding: 1px;
+    background: cadetblue;
+    width: 20rem;
+    border-radius: 11px;
+}
+
+.bottom-payment .left{
+    width: 30%;
+    border: 1px solid cadetblue;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bottom-payment .right{
+    width: 64%;
+    /* border: 1px solid; */
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.right .hotel-payment, .detail-payment{
+    display: flex;
+}
+
+.right .hotel-payment .hotel-img{
+
+}
+
+.right .hotel-payment .content-hotel{
+
+}
+
+.info-payment #input-infor{
+    display: flex;
+    /* justify-content: space-around; */
+}
+
+.hotel-payment, .info-payment, .detail-payment{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 3rem;
+}
+
+pre{
+    font-family: 'Tahoma';
+    font-size: 1.4rem;
+    line-height: 2.5rem;
+}
+
+input:focus {
+    background-color: rgb(33, 150, 243);
+    color: white;
+    /* border: none; */
+}
+
+.bottom-payment .right{
+    background-color: floralwhite;
 }

@@ -21,7 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('checkSelectAPI',[IndexController::class,'checkSelectAPI'])->name('checkSelectAPI');
 
-Route::get('/getRoomtypeAPI',[IndexController::class,'getRoomtypeAPI'])->name('getRoomtypeAPI');
 
 Route::get('/getRoomtypeJsonAPI',[IndexController::class,'getRoomtypeJsonAPI'])->name('getRoomtypeJsonAPI');
 

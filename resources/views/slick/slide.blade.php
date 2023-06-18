@@ -13,14 +13,14 @@
          </div> --}}
     {{-- </div> --}} --}}
     @foreach ($discount as $hidden)
-        <div>
+        <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <div style="width: 20em">
                 <div class="image-hotel" >
                     <img style="margin-left: 24px;" src="./app/images/uudai.png" alt="">
                 </div>
-                <div style="margin-left: 24px;" class="content">
+                <div style="margin-left: 24px; color:white; font-size:1.8rem; font-weight:bold" class="content">
                     <p>{{ $hidden->giaLoaiPhong }}</p>
-                    <p> <a href="#">{{ $hidden->tenLoai }}</a> </p>
+                    <p> <a href="#" style="color: white">{{ $hidden->tenLoai }}</a> </p>
                 </div>
              </div>
         </div>
@@ -38,7 +38,7 @@ $('.filtering').slick({
   slidesToShow: 4,
   slidesToScroll: 4,
   arrows:true,
-  speed:300,
+  speed:1000,
   autoplay: true,
 
 

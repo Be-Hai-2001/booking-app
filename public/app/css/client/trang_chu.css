@@ -84,8 +84,9 @@ display: grid;
 .txt{
     text-align: center;
     font-weight: bold;
-    font-size: 1.5rem;
-    margin-bottom: 30px;
+    font-size: 3rem;
+    margin-bottom: 60px;
+    margin-top: 10rem;
 }
 .top1, .top2, .bottom .top1, .bottom .top2, .bottom .top3{
     border-radius: 15px;

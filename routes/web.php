@@ -5,6 +5,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoaiGiuongController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OnlineCheckoutController;
 use App\Http\Controllers\PhuonngXaController;
 use App\Http\Controllers\QuanHuyenController;
 use App\Http\Controllers\RoomtypeController;
@@ -56,6 +57,7 @@ Route::post('/Register',[LoginController::class,'Register']);
 
 //Client
 Route::get('/',[IndexController::class,'Home'])->name('home');
+Route::get('/lien_he',[IndexController::class,'lienHe'])->name('lienHe');
 // Lấy danh sách khách sạn theo lựa chọn
 
 
@@ -82,7 +84,6 @@ Route::middleware('admin')->group(function(){
     Route::resource('hotels', HotelController::class);
 
 
-
     Route::resource('servicerooms', TienichRoomtypeController::class);
     Route::resource('roomtypes', RoomtypeController::class);
     Route::resource('servicehotels', TienichHotelController::class);
@@ -94,3 +95,8 @@ Route::middleware('admin')->group(function(){
     Route::get('/image/hotel/{id}',[ImageController::class,'createImageHotel']);
     Route::get('/image/roomtype/{id}',[ImageController::class,'createImageRoom']);
 });
+
+
+Route::get('/getRoomtypeAPI',[IndexController::class,'getRoomtypeAPI'])->name('getRoomtypeAPI');
+
+

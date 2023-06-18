@@ -28,7 +28,8 @@ class TienichHotelController extends Controller
      */
     public function create()
     {
-        return response(view('admin.Create.create_servicehotel'));
+        $lst = hotel::all();
+        return response()->view('admin.Create.create_servicehotel',['lst'=>$lst], 201);
     }
 
     /**
@@ -39,12 +40,17 @@ class TienichHotelController extends Controller
      */
     public function store(Request $request)
     {
-        $rules=[
+        $request->validate([
             'tenTienIch'=> 'required',
             'hotel_id'=> 'required',
             'noiDung'=> 'required',
-        ];
-        $request->validate($rules);
+        ], [
+            'tenTienIch.required' => 'Không được bỏ trống.',
+
+            'hotel_id.required' => 'Không được bỏ trống.',
+
+            'noiDung.required' => 'Không được bỏ trống.',
+        ]);
 
         $service = tienichHotel::create([
             'hotel_id'=>$request->hotel_id,

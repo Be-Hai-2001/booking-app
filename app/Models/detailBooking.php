@@ -12,7 +12,7 @@ class detailBooking extends Model
     protected $fillable = [
         'roomtype_id',
         'booking_hotel_id',
-        'soDem',
+        'giaTheoNgay',
         'SL_Loaiphong',
         'SL_giuongThem',
         'SL_nguoiLon',

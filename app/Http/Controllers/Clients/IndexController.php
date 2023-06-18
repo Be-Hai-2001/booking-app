@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Clients;
 
 use App\Http\Controllers\Controller;
+use App\Models\bookingHotel;
+use App\Models\detailBooking;
 use App\Models\hotel;
 use App\Models\image;
 use App\Models\roomtype;
 use App\Models\thanhPho;
 use Carbon\Carbon;
+use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
 use App\Services\Interfaces\GetObjectInterface;
 use App\Services\Interfaces\SettingInterface;
-
+use PHPUnit\Framework\Constraint\Count;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class IndexController extends Controller
@@ -44,6 +47,7 @@ class IndexController extends Controller
         )
         ->get();
 
+        dd($is_float);
         return view('client.views.trang_chu',[
             'discount'=>$discount,
             'address'=>$address,
@@ -113,12 +117,12 @@ class IndexController extends Controller
                 ->join('thanh_phos','hotels.thanhPho', '=', 'thanh_phos.id')
                 ->join('quan_huyens', 'hotels.quanHuyen', '=', 'quan_huyens.id')
                 ->join('phuonng_xas', 'hotels.phuongXa', '=', 'phuonng_xas.id')
-                //->join('images', 'hotels.id', '=', 'images.hotel_id')
                 ->select ('hotels.tenKS', 'hotels.content', 'thanh_phos.tenTp',
                 'quan_huyens.tenQuanHuyen', 'phuonng_xas.tenPhuongXa',
                 'hotels.checkinCheckout', 'hotels.id', 'hotels.soSao')
                ->DISTINCT()
                 ->get();
+        // dd($detail_hotel);
 
         $roomtype = DB::table('hotels')
                     ->where('hotels.id', $id)
@@ -126,57 +130,169 @@ class IndexController extends Controller
                     ->get();
 
         $pic = image::where('hotel_id',$id)->first();
-// dd($pic);
         $images = image::where('hotel_id',$id)->get();
-       // dd($images);
         $day = Carbon::now()->day; //ngày
         $month = Carbon::now()->month; //tháng
         $year = Carbon::now()->year; //năm
 
         $nhanphong = $this->getting->getDayMonth($day,$month,$year);
 
-        return view('client.views.booking',[
+        return response()->view('client.views.booking',[
             'details'=>$detail_hotel,
             'roomtypes'=>$roomtype,
             'nhan_phong'=>$nhanphong,
             'images'=>$images,
             'pic'=>$pic,
+        ], 200);
+        // ->header('Content-Type','application/json');
+    }
+
+    //Gửi dữ liệu từ trang loại phòng sang trang thanh toán
+    public function postBookingRoom(Request $request){
+        // dd($request->request);
+        $rules = [
+            'checkin' => 'required'
+        ];
+
+        $request->validate($rules);
+
+        $tongTien = $request->tongTien;
+        $checkin = $request->checkin;
+        $soDem = $request->soDem;
+
+        //Tạo mảng khác sạn
+        $arr =  $request->request;
+        $ngayDP= Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
+        $arr = $arr->all();
+        // Lấy khách sạn
+        $hotels = DB::table('hotels')
+            ->where('hotels.id',$arr['booking_hotel_id'])
+            ->join('thanh_phos','hotels.thanhPho', '=', 'thanh_phos.id')
+            ->join('quan_huyens', 'hotels.quanHuyen', '=', 'quan_huyens.id')
+            ->join('phuonng_xas', 'hotels.phuongXa', '=', 'phuonng_xas.id')
+        ->get();
+
+        // Hình ảnh khách sạn
+        $images = image::where('hotel_id',$arr['booking_hotel_id'])->first();
+        // dd($hotels);
+        // Thêm hóa đơn
+        // bookingHotel::create([
+        //     'user_id'=>$request->user_id,
+        //     'sdt'=>$request->sdt,
+        //     'ngayDP'=>$ngayDP,
+        //     'checkin'=>$request->checkin,
+        //     'soDem'=>$request->soDem,
+        //     'tongTien'=>$request->tongTien,
+        //     'trangThai'=>1
+        // ]);
+
+        // $last_record[] = bookingHotel::latest()->first()->toArray();
+        // $hotel_id = 0;
+        // $last_record =
+        // foreach($last_record as $val){
+        //     $hotel_id = $val['id'];
+        // }
+
+        $arr = array_values($arr);
+        $arrCart = [];
+        $arrCarts = [];
+
+        $scop = 1;
+        $scopArr = 0;
+
+        //Tạo mảng cart
+        for($i = 6; $i < Count($arr); $i++){
+            // echo $arr[$i] . "<br>";
+            if($scop == 1){
+                $arrCart["roomtype_id"] = $arr[$i];
+                $arrCarts[$scopArr] = $arrCart;
+                $scop++;
+            }
+            elseif($scop == 2){
+                $arrCart["giaTheoNgay"] = $arr[$i];
+                $arrCarts[$scopArr] = $arrCart;
+                $scop++;
+            }elseif($scop == 3){
+                $arrCart["SL_Loaiphong"] = $arr[$i];
+                $arrCarts[$scopArr] = $arrCart;
+                $scop++;
+            }
+            elseif($scop == 4){
+                $arrCart["SL_giuongThem"] = $arr[$i];
+                $arrCarts[$scopArr] = $arrCart;
+                $scop++;
+            }
+            else{
+                $arrCart["donGia"] = $arr[$i];
+                $arrCarts[$scopArr] = $arrCart;
+                $scopArr++;
+                $scop = 1;
+            }
+            // dd($scop);
+        }
+        $lst = [];
+        // Xóa cart có số lượng == 0
+        foreach($arrCarts as $key=>$val){
+            if($val['SL_Loaiphong'] == 0){
+                unset($arrCarts[$key]);
+            }
+        }
+        $arr = [];
+        foreach($arrCarts as $val){
+            $name = roomtype::where('id',$val['roomtype_id'])->get();
+            $img = image::where('roomtype_id',$val['roomtype_id'])->first();
+            foreach($name as $item){
+                // $a['Key'] = $item->tenLoai;
+                // dd($a);
+                // array_push($val,);
+                $val['tenLoai'] = $item->tenLoai;
+                $val['sucChuaMax'] = $item->sucChuaMax;
+                $val['images'] = $img;
+                // dd($val);
+            }
+            array_push($lst, $val);
+        }
+
+
+        // dd($arr);
+        // dd($tongTien);
+        // Lưu mảng chi tiết
+
+        // foreach($arrCarts as $key=>$val){
+        //     // echo $val['roomtype_id'];
+        //     detailBooking::create([
+        //         'roomtype_id'=>$val['roomtype_id'],
+        //         'booking_hotel_id'=>$hotel_id,
+        //         'giaTheoNgay'=>$val['giaTheoNgay'],
+        //         'SL_Loaiphong'=>$val['SL_Loaiphong'],
+        //         'SL_giuongThem'=>$val['SL_giuongThem'],
+        //         'donGia'=,>$val['donGia'],
+        //         'SL_nguoiLon'=>null,
+        //         'SL_nguoiNho'=>null,
+        //         'SL_treEm'=>null,
+        //     ]);
+        // }
+        // dd($hotels);
+        return view('client.views.payment', [
+            // Khách sạn
+            'hotels'=>$hotels,
+            //Số đêm
+            'soDem'=>$soDem,
+            //Ngày nhận phòng
+            'checkin'=>$checkin,
+            //Ngày đặt phòng
+            'date_booking'=>$ngayDP,
+            //Tổng tiền
+            'tongTien'=>$tongTien,
+            // Ảnh khách sạn
+            'imgHotel'=>$images,
+            //lst loại phòng đã dặt
+            'arrCarts'=> $lst,
+            //Số sao của khách sạn
         ]);
     }
 
-    //Gửi dữ liệu từ trang loại phòng sang hóa đơn
-    //Method POST
-    public function postBookingRoom(Request $request){
-
-        //dd($request->request);
-        // $data = [];
-        //  $data = $request->request;
-        // dd($data);
-        // $request->session()->push
-
-        // return view('slick.payment_quick_view');
-    }
-
-    // Lỗi Không fix được
-    public function getRoomtypeAPI(Request $request){
-
-        $roomtype = roomtype::find($request->id);
-
-        $cart = session()->get('cart');
-
-        // $cart[$request->id] = [
-        //     'id'=>$roomtype->id,
-        //     'tenLoai'=>$roomtype->tenLoai,
-        // ];
-      //dd($cart);
-
-      session()->put('cart', $cart);
-
-    //   return view('client.views.booking',['cart'=>$cart]);
-
-        print_r($cart);
-
-    }
+    //
 
     //Gird view API lấy loại phòng khi click
     public function getRoomtypeJsonAPI(Request $request){
@@ -203,5 +319,9 @@ class IndexController extends Controller
         ->join('hotels', 'hotels.quanHuyen', '=', 'quan_huyens.id')
         ->get();
     }
-}
 
+    //Trang liên hệ
+    public function lienHe(){
+        return response()->view('client.lien_he');
+    }
+}

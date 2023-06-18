@@ -78,22 +78,21 @@ class KhachSanImplement implements GetObjectInterface, SettingInterface {
     // Setting interface
     //Khách sạn
     public function create($request){
-        $rules = [
-            'tuoiThemGiuong'=> 'required',
-            'tuoiFree'=> 'required',
-            'soluong_free'=> 'required',
-            'tenKS'=> 'required',
-            'sdt'=> 'required',
-            'checkinCheckout'=> 'required',
-            'doiTra'=> 'required',
-            'soSao'=> 'required',
-            'thanhPho'=> 'required',
-            'quanHuyen'=> 'required',
-            'phuongXa'=> 'required',
-            'trangThai'=> 'required',
-        ];
+       $request->validate( [
+        'tuoiThemGiuong'=> 'required',
+        'tuoiFree'=> 'required',
+        'soluong_free'=> 'required',
+        'tenKS'=> 'required',
+        'sdt'=> 'required',
+        'checkinCheckout'=> 'required',
+        'doiTra'=> 'required',
+        'soSao'=> 'required',
+        'thanhPho'=> 'required',
+        'quanHuyen'=> 'required',
+        'phuongXa'=> 'required',
+        'trangThai'=> 'required',
+    ]);
 
-        $request->validate($rules);
         // dd($rules);
         $hotel = hotel::create([
             'tuoiThemGiuong'=>$request->tuoiThemGiuong,
@@ -115,6 +114,20 @@ class KhachSanImplement implements GetObjectInterface, SettingInterface {
         return redirect()->route('hotels.index');
     }
     public function update($request, $hotel){
+        $request->validate( [
+            'tuoiThemGiuong'=> 'required',
+            'tuoiFree'=> 'required',
+            'soluong_free'=> 'required',
+            'tenKS'=> 'required',
+            'sdt'=> 'required',
+            'checkinCheckout'=> 'required',
+            'doiTra'=> 'required',
+            'soSao'=> 'required',
+            'thanhPho'=> 'required',
+            'quanHuyen'=> 'required',
+            'phuongXa'=> 'required',
+            'trangThai'=> 'required',
+        ]);
 
         $hotel->fill([
             'tuoiThemGiuong'=>$request->tuoiThemGiuong,
@@ -257,12 +270,13 @@ class KhachSanImplement implements GetObjectInterface, SettingInterface {
 
     //Service roomtype
     public function createSvRoom($request){
-        $rules=[
-            'tenTienIch'=> 'required',
-            'roomtype_id'=> 'required',
-            'noiDung'=> 'required',
-        ];
-        $request->validate($rules);
+        $request->validate(
+            [
+                'tenTienIch'=> 'required',
+                'roomtype_id'=> 'required',
+                'noiDung'=> 'required',
+            ]
+        );
 
         $service = tienichRoomtype::create([
             'roomtype_id'=>$request->roomtype_id,

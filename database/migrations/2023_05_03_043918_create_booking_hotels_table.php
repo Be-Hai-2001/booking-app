@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('sdt',12)->nullable();
             $table->date('ngayDP');
             $table->date('checkin');
-            $table->date('checkout');
+            $table->integer('soDem')->default(1);
             $table->double('tongTien', 12, 2);
             $table->integer('trangThai');
             $table->timestamps();

@@ -17,6 +17,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('roomtype_id')->constrained();
             $table->foreignId('booking_hotel_id')->constrained();
+            $table->double('giaTheoNgay',13,2);
+            $table->integer('SL_LoaiPhong');
+            $table->integer('SL_giuongThem');
+            $table->integer('SL_nguoiLon');
+            $table->integer('SL_nguoiNho');
+            $table->integer('SL_treEm');
+            $table->double('DonGia',15,2);
             $table->timestamps();
         });
     }

@@ -15,27 +15,28 @@ function payment(){
     //Đơn giá
     var donGia = document.getElementsByClassName('donGia');
     var donGia_roomtype = document.getElementsByClassName('donGia_roomtype');
+    //Tổng tiền
+    var input_tongTien = document.getElementById('tongTien');
+    var tongTien = 0;
 
     //Số lượng sql
     var sql = document.getElementsByClassName('sl-sql');
 
     var price = 0;
-    var slluu = 0;
+    //var slluu = 0;
 
     for(i=0 ; i <price_roomtype.length; i++){
-        // Đơn giá = loại phòng * số  đêm * số lượng loại + ( extraBed * số lượng )
+
         var price = price_roomtype[i].value * number_night.value * number_roomtybe[i].value + ( price_extrabed[i].value * number_extraBed[i].value);
-        //console.log(( price_extrabed[i].value * number_extraBed[i].value));
 
         document.getElementsByClassName('donGia_roomtype')[i].setAttribute('value', price);
         donGia[i].innerHTML = (price)+'VND';
 
-        // slluu = sql[i].value - number_roomtybe[i].value;
-        // console.log(slluu);
-
-        // document.getElementsByClassName('donGia_roomtype')[i].setAttribute('value', price);
+        tongTien += price;
     }
+    input_tongTien.setAttribute('value', tongTien);
 }
+
 
 payment();
 
@@ -45,15 +46,15 @@ function addToCart(event){
     event.preventDefault();
 
     //console.log('khoa bú win');
-    let urlCart = $(this).data('url')
+    // let urlCart = $(this).data('url')
     //alert(url);
 
     $.ajax({
         type:"GET",
-        url: urlCart,
+        url: "/payment",
         dataType:'json',
         success: function(data){
-            //console.log(data);
+            console.log('okkkkkkkkkkkkkk');
         },
         error: function(){
 

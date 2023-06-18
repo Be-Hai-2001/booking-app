@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class bookingHotel extends Model
 {
     use HasFactory;
+    protected $fillable = ['tongTien', 'soDem', 'checkin', 'ngayDP', 'sdt'];
 
+    public function detailBooking(){
+        return $this->hasMany(detailBooking::class);
+    }
 
 }

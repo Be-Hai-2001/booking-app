@@ -81,8 +81,9 @@
         </div>
 
         {{-- Section 4 --}}
-        <div class="top-booking">
-            <div class="txt">   Ưu đãi trong tuần   </div>
+
+    <div class="top-booking" style="background-color: rgb(33, 150, 243); height:35rem">
+            <div class="txt" style="padding-top: 3rem;">   Ưu đãi trong tuần   </div>
             @include('slick.slide')
         </div>
 
@@ -120,10 +121,7 @@
             });
             splide.mount();
         </script>
-    {{-- @auth
-        {{ Auth::user()->id }}
-    @endauth --}}
-        {{-- Section 6 --}}
+
         <div class="top-booking">
             <div class="txt">  Đối tác </div>
 
