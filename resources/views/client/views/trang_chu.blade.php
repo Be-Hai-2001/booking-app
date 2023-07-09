@@ -6,7 +6,7 @@
         {{-- Section 1 --}}
         <div class="display" id="chage-bacgr" style="background:#f0e4fe">
             <div class="home-client">
-                <div style="height: 400px">
+                <div style="height: 45rem">
                     <img id="chage-img" src="./app/images/uudai.png" alt="">
                 </div>
             </div>
@@ -103,8 +103,8 @@
                                         @for($i = 0; $i < $float->soSao; $i++)
                                             <i class="fa-solid fa-star"></i>
                                         @endfor
-                                        <p><b>Địa chỉ: </b>{{ $float->tenPhuongXa }}, {{ $float->tenQuanHuyen }}, {{ $float->tenTp }}</p>
-                                        <div><b>Giới thiệu: </b><div>{!! $float->content !!}</div></div>
+                                        <p class="font-size-1-5"><b>Địa chỉ: </b>{{ $float->tenPhuongXa }}, {{ $float->tenQuanHuyen }}, {{ $float->tenTp }}</p>
+                                        <div class="font-size-1-5"><b>Giới thiệu: </b><div>{!! $float->content !!}</div></div>
                                     </div>
                                 </li>
                             @endforeach
@@ -123,7 +123,7 @@
         </script>
 
         <div class="top-booking">
-            <div class="txt">  Đối tác </div>
+            {{-- <div class="txt">  Đối tác </div> --}}
 
         </div>
     </div>

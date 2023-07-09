@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Clients\ChartController;
 use App\Http\Controllers\Clients\IndexController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,12 @@ Route::get('checkSelectAPI',[IndexController::class,'checkSelectAPI'])->name('ch
 Route::get('/getRoomtypeJsonAPI',[IndexController::class,'getRoomtypeJsonAPI'])->name('getRoomtypeJsonAPI');
 
 Route::get('/getSeverceRoomApi',[IndexController::class,'getSeverceRoomApi'])->name('getSeverceRoomApi');
+
+Route::post('/apiPayment',[IndexController::class,'apiPayment'])->name('apiPayment');
+
+Route::get('/getHotelStatisticsApi', [ChartController::class, 'getHotelStatisticsApi']);
+
+Route::put('/admin/update-trang-thai-user/{id}', [IndexController::class, 'updateUser']);
+
+Route::get('/admin/get-user-all', [IndexController::class, 'getUserAll']);
+

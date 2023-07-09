@@ -22,7 +22,7 @@
     }
 </style>
 <main>
-    <div class="container-fluid">
+    <div class="container-fluid-lien-he">
         <section>
                 <div class="row">
                     <div class="col-sm-12">
@@ -55,21 +55,117 @@
                 </div>
             </div>
             <div id="contact-form" class="box-shadow-contact">
-                {{-- <form action="">
-                    <div class="left"></div>
-                    <div class="right"></div>
-                    <button> Thực hiện </button>
-                </form> --}}
                 Gửi phản hồi khách sạn
             </div>
+
+            <!-- Form gửi phản hồi -->
+            <div class="div-form-lien-he" id="form-lienhe">
+
+                <form action="{{ route('postFeedback') }}" method="POST" id="form-lien-he">
+                    @csrf
+                    <div id="ho-ten-email">
+                        <div>
+                            <p> <a>Họ và tên</a> </p>
+                            <input type="text" name="ho_ten">
+                        </div>
+
+                        <div>
+                            <p> <a>Email</a> </p>
+                            <input type="text" name="email">
+                        </div>
+                    </div>
+
+                    <div>
+                        <p> <a>Địa chỉ</a> </p>
+                        <input type="text" name="dia_chi">
+                    </div>
+
+                    <div>
+                        <p> <a>Nội dung</a> </p>
+                        <textarea name="noi_dung"></textarea>
+                    </div>
+
+                    <div style="text-align: center"><button> Gửi phản hồi </button></div>
+
+                </form>
+
+            </div>
+
             <div id="destroy-booking" class="box-shadow-contact">
                 Hủy đặt phòng
             </div>
+
+            <!-- Form hủy đặt phòng -->
+            <div id="form-huy-db" class="div-form-lien-he">
+
+                <form action="{{ route('postCancelReservation') }}" method="POST" id="form-lien-he">
+                    @csrf
+                    <div id="ho-ten-email">
+                        <div>
+                            <p> <a>Họ và tên</a> </p>
+                            <input type="text" name="ho_ten">
+                        </div>
+
+                        <div>
+                            <p> <a>Căn cước công dân</a> </p>
+                            <input type="text" name="cccd">
+                        </div>
+                    </div>
+
+                    <div id="ho-ten-email">
+                        <div>
+                            <p> <a>Số điện thoại</a> </p>
+                            <input type="text" name="sdt">
+                        </div>
+
+                        <div>
+                            <p> <a>Mã hóa đơn</a></p>
+                            <input type="text" name="ma_hd">
+                        </div>
+                    </div>
+
+                    <div>
+                        <p> <a>Nội dung</a> </p>
+                        <textarea name="noi_dung"></textarea>
+                    </div>
+
+                    <div style="text-align: center"><button> Thực hiện </button></div>
+
+                </form>
+
+            </div>
+
             <div id="search-hoadon" class="box-shadow-contact">
                 Tra cứu hóa đơn đặt phòng
+            </div>
+
+            <!-- Form tra cứu hóa đơn -->
+            <div id="form-tra-cuu-hd" class="div-form-lien-he">
+
+                <form action="" id="form-lien-he">
+
+                    <div id="ho-ten-email">
+                        <div>
+                            <p> <a>Căn cước công dân</a> </p>
+                            <input type="text" name="CCCD">
+                        </div>
+
+                        <div>
+                            <p> <a>Số điện thoại đặt phòng</a> </p>
+                        <input type="text" name="sdt">
+                        </div>
+                    </div>
+
+                    <div style="text-align: center"><button> Tra Cứu </button></div>
+
+                </form>
+
             </div>
         </div>
     </div>
 </main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{{ asset('app/css/client/layout/lien_he.jsx') }}"></script>
 
 @endsection

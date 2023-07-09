@@ -3,7 +3,7 @@ function display(){
 
     for(i=0; i<flat.length; i++){
         switch(i){
-            case 0: flat[0].style.height = '400px';
+            case 0: flat[0].style.height = '45rem';
 
             case 1: flat[1].style.height = '70px';
 
@@ -19,7 +19,7 @@ function home(){
             // case 0: flat[0].style.height = '400px';
 
             case 1: flat[1].style.height = '7rem';
-                    flat[1].style.width = '1420px';
+                    flat[1].style.width = '78.2%';
                     flat[1].style.backgroundColor="rgb(33, 150, 243)";
                     flat[1].style.position = 'absolute';
                     flat[1].style.borderRadius = '7px';

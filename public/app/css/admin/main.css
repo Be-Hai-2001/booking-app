@@ -1,0 +1,192 @@
+.admin-button-list{
+    /* line-height: 9rem; */
+    padding: 2rem 0
+}
+
+.admin-button-list .cl-btn{
+    margin-bottom: 4rem;
+}
+#title-data {
+    font-size: 2rem;
+    margin-top: 2rem;
+    font-family: -webkit-body;
+}
+
+#title-data i {
+    margin: auto 1rem;
+    color: orange;
+}
+
+.admin-button-list div button{
+border: none;
+font-size: 1.8rem;
+background: none;
+color: #344767;
+}
+.admin-button-list .cl-btn .table{
+line-height: 3;
+font-size: 1.7rem;
+margin-top: -1rem;
+padding-left: 3rem;
+}
+
+.admin-button-list .cl-btn .table a {
+text-decoration: none;
+color: darkgreen;
+}
+
+#title-imglog {
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    color: orange;
+    font-family: -webkit-body;
+
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.admim-header{
+position: fixed;
+width: 18%;
+padding-left: 3rem;
+height: fit-content;
+border-right: solid 2px #D3D3D3;
+border-bottom: solid 2px #D3D3D3;
+}
+
+.admin-app{
+border-bottom: solid 2px #D3D3D3;
+
+}
+
+#body-admin {
+background-color: #f8f9fa !important;
+font-family: tahoma;
+}
+
+.admin-button-list .cl-btn button i {
+box-shadow: 0px 0px 10px 1px #dcdcdc;
+padding: 1rem;
+border-radius: 12px;
+color: blue;
+}
+
+#btn-table{
+display: block;
+border-radius: 5px;
+margin: 0px 17px 0 26px;
+box-shadow: inset 0px 0px 31px -36px;
+margin-bottom: 3rem;
+}
+
+/* table */
+
+.create a{
+text-decoration: none;
+color: navy;
+font-weight: bold;
+}
+
+.create{
+text-align: center;
+width: 14.5rem;
+border-radius: 7px;
+background: red;
+border: none;
+box-shadow: 0px 0px 25px -3px;
+padding: 20px;
+
+
+margin-left: 73.5rem;
+margin-top: 10rem;
+margin-bottom: 4rem;
+}
+
+table, th, td {
+border: 1px solid white;
+border-collapse: collapse;
+}
+th, td {
+background-color: #d3d3d338;
+}
+
+.table-main-right{
+margin: auto 6rem;
+font-size: 1.4rem;
+}
+
+.table-main-right .title-admin-table th {
+    padding: 1rem;
+    background-color: orange;
+    color: white;
+}
+
+.content-admin-table th {
+    font-size: 1.4rem;
+    font-weight: 100;
+    height: 11rem;
+}
+
+.content-admin-table th i {
+    font-size: 2rem;
+    padding: 13px;
+}
+
+.content-admin-table button {
+    border: none;
+    background: none;
+}
+
+.xem-chi-tiet {
+    text-decoration: none;
+    text-shadow: 2px 2px 8px #FF0000;
+}
+
+a{
+    text-decoration: none;
+}
+
+.main-chart h1{
+    padding: 0 10.5rem;
+    font-size: 2.5rem;
+}
+
+.main-chart #hotel-start {
+    margin-left: 10.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+
+.main-chart #hotel-end {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+
+.main-chart .submit {
+    font-size: 3rem;
+    background: none;
+    border: none;
+    position: absolute;
+    color: orange;
+}
+
+.dashboard-hotel {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+}
+
+main{
+    margin-left: 22%;
+}
+
+.main-chart .dashboard-hotel .time{
+    
+    font-size: 1.6rem;
+    margin-left: 10.2%;
+    margin-bottom: 1rem;
+    display: flex;
+
+}

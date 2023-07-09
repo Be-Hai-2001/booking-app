@@ -2,6 +2,7 @@
     justify-content: space-between;
     margin: auto 150px;
     align-items: center;
+    font-size: 1.5rem;
 }
 .d-main-screen{
     display: flex;
@@ -49,12 +50,19 @@
 .d-main-introduce{
     width: 70%;
 }
-/* .d-m-i-1{
 
+.input-size{
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    border-radius: 8px;
 }
-.d-m-i-2{
-
-} */
+.input-number-size{
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 15rem;
+    text-align: center;
+}
 .input-number{
     /* border: none; */
     text-align: center;
@@ -67,10 +75,11 @@
     text-align: center;
 }
 .d-booking{
-    padding: 16px;
-    border-radius: 2px;
-    width: 81%;
+    padding-left: 1.5rem;
+    overflow: auto;
+    height: 100%;
     margin-left: 2rem;
+    font-size: 1.5rem;
 }
 .d-booking >button{
     background: #006ab7;
@@ -133,13 +142,12 @@ td{
 }
 
 .black_1_7{
-    font-size: 1.7rem;
-    /* color: black; */
+    margin-top: 5rem;
+    font-size: 2.5rem;
 }
 
 .black_1_2{
-    font-size: 1.2rem;
-    /* color: black; */
+    font-size: 1.8rem;
 }
 
 #top-payment{
@@ -147,6 +155,8 @@ td{
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+
+    line-height: 2rem;
 }
 
 #top-payment .c-n{
@@ -166,6 +176,8 @@ td{
     font-size: 1.5rem;
     margin: auto 14rem;
     margin-top: 2rem;
+
+    line-height: 4rem;
 }
 
 .gach{
@@ -176,6 +188,7 @@ td{
 }
 
 .bottom-payment .left{
+    height: fit-content;
     width: 30%;
     border: 1px solid cadetblue;
     padding: 10px;
@@ -184,21 +197,35 @@ td{
 
 .bottom-payment .right{
     width: 64%;
-    /* border: 1px solid; */
+    background-color: floralwhite;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .right .hotel-payment, .detail-payment{
     display: flex;
 }
-
-.right .hotel-payment .hotel-img{
-
+.gidview {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
 }
 
-.right .hotel-payment .content-hotel{
+.div-nd{
+    
+    position: absolute;
+    left: 82%;
+    margin-top: 5%;
 
+}
+.title-name{
+    text-shadow: rgb(0, 0, 0) 2px 2px 4px;
+    color: blueviolet;
+}
+
+td{
+    font-size: 1.5rem;
 }
 
 .info-payment #input-infor{
@@ -224,6 +251,62 @@ input:focus {
     /* border: none; */
 }
 
-.bottom-payment .right{
-    background-color: floralwhite;
+.bottom-payment .right p {
+ margin: 0;
 }
+
+.bottom-payment .content-hotel{
+    margin-left: 2rem;
+}
+.bottom-payment span{
+    color: black;
+    text-shadow: 0 0 1px #0000FF;
+}
+
+.fa-star{
+
+    color: lightskyblue;
+    font-size: 2rem;
+    text-shadow: rgb(0, 0, 0) 4px 2px 7px;
+}
+
+.detail-payment .tenloai{
+    text-shadow: rgb(0, 0, 0) 2px 2px 4px;
+    color: blueviolet;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+#btn-thanhtoan{
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    background: rgb(33, 150, 243);
+    color: white;
+    position: absolute;
+    margin-top: -16rem;
+}
+
+.submit-db-paymant{
+    font-size: 1.5rem;
+    background: aqua;
+    border: none;
+    box-shadow: 3px 0px 5px -1px;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+
+/* .submit-db-paymant{
+
+    position: relative;
+    animation: myfirst 7s linear 0s infinite ;
+  }
+  @keyframes myfirst {
+    0%   {color:rgb(33 150 243);transform: rotate(-10deg)}
+    25%  {color:black; transform: rotate(0deg)}
+    50%  {color:orange; transform: rotate(10deg)}
+    75%  {color:black;transform: rotate(0deg);}
+    100% {color:rgb(33 150 243); transform: rotate(-10deg);}
+} */

@@ -9,6 +9,8 @@ use App\Models\hotel;
 use App\Models\image;
 use App\Models\roomtype;
 use App\Models\thanhPho;
+use App\Models\tienichHotel;
+use App\Models\User;
 use Carbon\Carbon;
 use Dotenv\Util\Str;
 use Illuminate\Http\Request;
@@ -31,7 +33,8 @@ class IndexController extends Controller
     //Hiển thị gia diện trang home người dùng
     //Method GET
     public function Home(){
-        $discount = roomtype::where('discount',1)->get();
+        $discount = roomtype::Join('images', 'images.roomtype_id', '=', 'roomtypes.id')->where('roomtypes.discount',1)->get(['roomtypes.*', 'images.images']);
+
         $address = thanhPho::all();
 
         $is_float = DB::table('hotels')
@@ -47,7 +50,7 @@ class IndexController extends Controller
         )
         ->get();
 
-        dd($is_float);
+        // dd($is_float);
         return view('client.views.trang_chu',[
             'discount'=>$discount,
             'address'=>$address,
@@ -119,11 +122,15 @@ class IndexController extends Controller
                 ->join('phuonng_xas', 'hotels.phuongXa', '=', 'phuonng_xas.id')
                 ->select ('hotels.tenKS', 'hotels.content', 'thanh_phos.tenTp',
                 'quan_huyens.tenQuanHuyen', 'phuonng_xas.tenPhuongXa',
-                'hotels.checkinCheckout', 'hotels.id', 'hotels.soSao')
+                'hotels.checkinCheckout', 'hotels.id', 'hotels.soSao', 'hotels.content', 'hotels.doiTra')
                ->DISTINCT()
                 ->get();
         // dd($detail_hotel);
 
+        $service_hotel = hotel::Join('tienich_hotels', 'hotels.id', '=', 'tienich_hotels.hotel_id')->where('hotels.id', $id)
+        ->get(['tienich_hotels.tenTienIch', 'tienich_hotels.noiDung']);
+
+        // dd($service_hotel);
         $roomtype = DB::table('hotels')
                     ->where('hotels.id', $id)
                     ->join('roomtypes','roomtypes.hotel_id', '=', 'hotels.id')
@@ -138,6 +145,7 @@ class IndexController extends Controller
         $nhanphong = $this->getting->getDayMonth($day,$month,$year);
 
         return response()->view('client.views.booking',[
+            'service_hotel'=>$service_hotel,
             'details'=>$detail_hotel,
             'roomtypes'=>$roomtype,
             'nhan_phong'=>$nhanphong,
@@ -159,6 +167,7 @@ class IndexController extends Controller
         $tongTien = $request->tongTien;
         $checkin = $request->checkin;
         $soDem = $request->soDem;
+        // $soNguoilon
 
         //Tạo mảng khác sạn
         $arr =  $request->request;
@@ -174,24 +183,6 @@ class IndexController extends Controller
 
         // Hình ảnh khách sạn
         $images = image::where('hotel_id',$arr['booking_hotel_id'])->first();
-        // dd($hotels);
-        // Thêm hóa đơn
-        // bookingHotel::create([
-        //     'user_id'=>$request->user_id,
-        //     'sdt'=>$request->sdt,
-        //     'ngayDP'=>$ngayDP,
-        //     'checkin'=>$request->checkin,
-        //     'soDem'=>$request->soDem,
-        //     'tongTien'=>$request->tongTien,
-        //     'trangThai'=>1
-        // ]);
-
-        // $last_record[] = bookingHotel::latest()->first()->toArray();
-        // $hotel_id = 0;
-        // $last_record =
-        // foreach($last_record as $val){
-        //     $hotel_id = $val['id'];
-        // }
 
         $arr = array_values($arr);
         $arrCart = [];
@@ -201,7 +192,7 @@ class IndexController extends Controller
         $scopArr = 0;
 
         //Tạo mảng cart
-        for($i = 6; $i < Count($arr); $i++){
+        for($i = 5; $i < Count($arr); $i++){
             // echo $arr[$i] . "<br>";
             if($scop == 1){
                 $arrCart["roomtype_id"] = $arr[$i];
@@ -240,39 +231,23 @@ class IndexController extends Controller
         $arr = [];
         foreach($arrCarts as $val){
             $name = roomtype::where('id',$val['roomtype_id'])->get();
-            $img = image::where('roomtype_id',$val['roomtype_id'])->first();
+            $img = image::where('roomtype_id',$val['roomtype_id'])->select('images')->first();
+            // dd($images);
             foreach($name as $item){
-                // $a['Key'] = $item->tenLoai;
-                // dd($a);
-                // array_push($val,);
+
                 $val['tenLoai'] = $item->tenLoai;
                 $val['sucChuaMax'] = $item->sucChuaMax;
-                $val['images'] = $img;
-                // dd($val);
+
+                // $va['soluong_free'] = $item->soluong_free;
+                $val['images'] = $img->images  ?? 'upload\images\logoDulich.png';
+
+                // dd($val['images']);
+
             }
+            // dd($val['tenLoai']);
             array_push($lst, $val);
         }
-
-
-        // dd($arr);
-        // dd($tongTien);
-        // Lưu mảng chi tiết
-
-        // foreach($arrCarts as $key=>$val){
-        //     // echo $val['roomtype_id'];
-        //     detailBooking::create([
-        //         'roomtype_id'=>$val['roomtype_id'],
-        //         'booking_hotel_id'=>$hotel_id,
-        //         'giaTheoNgay'=>$val['giaTheoNgay'],
-        //         'SL_Loaiphong'=>$val['SL_Loaiphong'],
-        //         'SL_giuongThem'=>$val['SL_giuongThem'],
-        //         'donGia'=,>$val['donGia'],
-        //         'SL_nguoiLon'=>null,
-        //         'SL_nguoiNho'=>null,
-        //         'SL_treEm'=>null,
-        //     ]);
-        // }
-        // dd($hotels);
+        // dd($lst);
         return view('client.views.payment', [
             // Khách sạn
             'hotels'=>$hotels,
@@ -296,7 +271,7 @@ class IndexController extends Controller
 
     //Gird view API lấy loại phòng khi click
     public function getRoomtypeJsonAPI(Request $request){
-
+        // dd($request->id);
         $roomtype = Db::table('roomtypes')
         ->where([
             ['roomtypes.id',$request->id],
@@ -305,10 +280,12 @@ class IndexController extends Controller
         ->leftJoin('images', 'images.roomtype_id', '=', 'roomtypes.id')
         ->get();
 
+        // dd($roomtype);
         return response()->json($roomtype);
     }
 
     public function getSeverceRoomApi(Request $request){
+        // dd($request->id);
         $service = roomtype::find($request->id)->services;
         //dd($service);
         return response()->json($service);
@@ -324,4 +301,64 @@ class IndexController extends Controller
     public function lienHe(){
         return response()->view('client.lien_he');
     }
+
+    public function apiPayment(Request $request){
+        // dd($request->bill[0]['tenKS']);
+        //Thêm một hóa đơn
+        bookingHotel::create([
+            'user_id'=>$request->bill[0]['user_id'],
+            'tenKS'=>$request->bill[0]['tenKS'],
+            'sdt'=>$request->bill[0]['sdt'],
+            'CCCD'=>$request->bill[0]['CCCD'],
+            'ngayDP'=>$request->bill[0]['ngayDP'],
+            'checkin'=>$request->bill[0]['checkin'],
+            'soDem'=>$request->bill[0]['soDem'],
+            'tongTien'=>$request->bill[0]['tongTien'],
+            'content'=>$request->bill[0]['content'],
+            'SL_nguoiLon'=>$request->bill[0]['SL_nguoiLon'],
+            'SL_nguoiNho'=>$request->bill[0]['SL_nguoiNho'],
+            'SL_treEm'=>$request->bill[0]['SL_treEm'],
+            'trangThai'=>0,
+        ]);
+
+        $last_record = bookingHotel::latest()->first()->toArray();
+
+        // dd($last_record['id']);
+        //Thêm danh sách chi tiết 1 hóa đơn
+        for($i=0; $i< Count($request->Carts); $i++){
+            detailBooking::create([
+                'roomtype_id'=>$request->Carts[$i][0]['roomtype_id'],
+                'booking_hotel_id'=>$last_record['id'],
+                'giaTheoNgay'=>$request->Carts[$i][0]['giaTheoNgay'],
+                'SL_Loaiphong'=>$request->Carts[$i][0]['SL_Loaiphong'],
+                'SL_giuongThem'=>$request->Carts[$i][0]['SL_giuongThem'],
+                'donGia'=>$request->Carts[$i][0]['donGia'],
+            ]);
+        }
+
+        return response()->json(201);
+
+    }
+
+
+    //detail
+    function detailBooking($id) {
+        // dd(11111111111);
+        $details = detailBooking::Where('booking_hotel_id', $id)
+        ->join('roomtypes', 'roomtypes.id', '=', 'detail_bookings.roomtype_id')
+        ->select(['roomtypes.tenLoai', 'detail_bookings.*'], )
+        ->get();
+        // dd($details);
+        return view('admin.tables.detail_booking_table', [
+            'lst'=>$details
+        ]);
+    }
+
+    function updateUser(Request $request, $id) {
+        // dd($id);
+        $user = User::find($id)->update($request->all());
+        return response()->json(['success'=>'User Updated Successfully!'], 201);
+    }
+
 }
+

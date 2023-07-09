@@ -14,9 +14,9 @@
     {{-- </div> --}} --}}
     @foreach ($discount as $hidden)
         <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-            <div style="width: 20em">
+            <div style="width: 26.5rem">
                 <div class="image-hotel" >
-                    <img style="margin-left: 24px;" src="./app/images/uudai.png" alt="">
+                    <img style="margin-left: 24px;height: 13rem;width: 23.5rem;" src="{{asset('storage')}}/{{ $hidden->images }}" alt="">
                 </div>
                 <div style="margin-left: 24px; color:white; font-size:1.8rem; font-weight:bold" class="content">
                     <p>{{ $hidden->giaLoaiPhong }}</p>

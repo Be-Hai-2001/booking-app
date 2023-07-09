@@ -14,7 +14,7 @@
 } */
 .check-adress select {
     height: 4rem;
-    width: 14.5rem;
+    width: 20rem;
     text-align: center;
     font-weight: bold;
     font-size: 1rem;
@@ -24,7 +24,7 @@
 }
 .check-in input{
     height: 4rem;
-    width: 14.5rem;
+    width: 16.5rem;
     text-align: center;
     font-weight: bold;
     border: none;
@@ -48,7 +48,7 @@ display: grid;
 
 .check-people div{
     background: white;
-    width: 20rem;
+    width: 25rem;
     height: 4rem;
     border-radius: 5px;
     align-items: center;
@@ -225,6 +225,6 @@ display: grid;
     margin-left: -1px;
 }
 
-.edit-tool{
-
+.font-size-1-5{
+    font-size: 1.5rem;
 }

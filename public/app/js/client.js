@@ -9,12 +9,15 @@ function frame(){
                     backgroundColor[1].style.backgroundColor="#2196F3"; break;
 
             case 2: flat[2].style.height = 'auto'; //25em
-                    backgroundColor[2].style.backgroundColor="gray"; break;
+                    // backgroundColor[2].style.backgroundColor="gray"; break;
         }
     }
 }
 
 frame();
+
+
+
 
 let visibleQuickView = document.getElementById('div-quick-view');
 let QuickView = document.getElementById('quick-view');
@@ -29,69 +32,23 @@ function replaceImg(id){
     document.getElementById('replace-main').setAttribute('src',img);
 }
 
-//Hiển thị dữ liệu loại phòng bằng gizd view
-$(function($){
-    $(".gidview").on('click', function(){
+alert(1);
+// function formHidle(id){
+//     var click = document.getElementById(id);
 
-        $("#div-quick-view").css("display","block");
-        $("#div-quick-view").css("visibility","inherit");
-       // console.log('1');
-        //event.preventDefault();
-        var gid = $(this).val();
-       // console.log(gid);
+//     if(id == 'box-shadow-contact'){
+//         document.getElementById('form-lienhe').style.display = 'block';
 
-        $.ajax({
-            type:"GET",
-            data:{'id':gid},
-            url: "/api/getRoomtypeJsonAPI",
-            dataType:'json',
+//         document.getElementById('form-lienhe').style.display = 'none';
+//         document.getElementById('form-lienhe').style.display = 'none';
 
-        }).then(res=>{
-            $.each(res, function(key, val){
-             //   document.getElementById("title-room").innerHTML = text.replace("", val.tenLoai);
-                document.getElementById("title-room").innerHTML = (val.tenLoai);
-                document.getElementById("dientich").innerHTML = (val.dienTich)+" m²";
-                document.getElementById("sucChua").innerHTML = (val.sucChuaMax)+" người";
-                document.getElementById("room-main").src ="/storage/"+(val.images);
-            });
-        }).catch(error=>{
+//     } else if(id == 'destroy-booking') {
 
-        });
+//     }
+//     else if( id == '') {
 
-    });
-});
+//     }
+//     else{
 
-//Hiển thị dịch vụ phòng
-$(function($){
-    $(".gidview").on('click', function(){
-        var service = $(this).val();
-
-        $.ajax({
-            type:"GET",
-            data:{'id':service},
-            url: "/api/getSeverceRoomApi",
-            dataType:'json',
-
-        }).then(res=>{
-            var arrName = [];
-            var arrContent = [];
-            var i = 0;
-            $.each(res, function(key, val){
-                arrName[i] = (val.tenTienIch);
-                arrContent[i] = (val.noiDung);
-                i++;
-            });
-
-            for(j = 0; j < arrContent.length; j++){
-                document.getElementsByClassName('services_name')[j].innerHTML = arrName[j];
-                document.getElementsByClassName('services_content')[j].innerHTML = arrContent[j];
-            }
-        }).catch(error=>{
-        });
-    });
-});
-// $(function($){
-//     $(".gidview").on('click',function(){
-
-//     });
-// })
+//     }
+// }

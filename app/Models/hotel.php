@@ -26,7 +26,7 @@ class hotel extends Model
         'quanHuyen',
         'phuongXa',
         'is_float',
-        'trangThai'
+
     ];
 
     // public function getThanhPho(): BelongsTo

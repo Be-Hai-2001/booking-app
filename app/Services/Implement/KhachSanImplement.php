@@ -308,7 +308,7 @@ class KhachSanImplement implements GetObjectInterface, SettingInterface {
 
         $image->save();
 
-        return redirect()->route('hotels.index');
+        return redirect()->route('tables');
     }
 
 }

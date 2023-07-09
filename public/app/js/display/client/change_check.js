@@ -6,7 +6,7 @@ $(function($){
 
         if($(this).is(":checked")){
             arr.push($(this).val());
-            console.log(arr);
+            // console.log(arr);
         }
         else{
             arr.pop($(this).val());

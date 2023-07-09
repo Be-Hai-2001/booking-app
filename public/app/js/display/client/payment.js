@@ -41,30 +41,30 @@ function payment(){
 payment();
 
 // // Thêm cart lỗi chưa làm xong
-function addToCart(event){
+// function addToCart(event){
 
-    event.preventDefault();
+//     event.preventDefault();
 
-    //console.log('khoa bú win');
-    // let urlCart = $(this).data('url')
-    //alert(url);
+//     //console.log('khoa bú win');
+//     // let urlCart = $(this).data('url')
+//     //alert(url);
 
-    $.ajax({
-        type:"GET",
-        url: "/payment",
-        dataType:'json',
-        success: function(data){
-            console.log('okkkkkkkkkkkkkk');
-        },
-        error: function(){
+//     $.ajax({
+//         type:"GET",
+//         url: "/payment",
+//         dataType:'json',
+//         success: function(data){
+//             console.log('okkkkkkkkkkkkkk');
+//         },
+//         error: function(){
 
-        },
-    });
-}
+//         },
+//     });
+// }
 
-$(function($){
-    $(".add_to_cart").on('click',addToCart)
-});
+// $(function($){
+//     $(".add_to_cart").on('click',addToCart)
+// });
 
 
 

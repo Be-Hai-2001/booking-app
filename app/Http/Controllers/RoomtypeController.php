@@ -24,7 +24,7 @@ class RoomtypeController extends Controller
     public function index()
     {
         $room = roomtype::all();
-        return response(view('admin.tables.roomtype_table',['room'=>$room]));
+        return response(view('admin.tables.roomtype_table',['roomtypes'=>$room]));
     }
 
     /**

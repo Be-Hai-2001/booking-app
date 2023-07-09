@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return response(view('admin.tables.user_table', ['users'=>User::all()]));
     }
 
     /**

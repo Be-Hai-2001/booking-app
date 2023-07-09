@@ -1,7 +1,7 @@
 
  <!-- Start footer -->
- <div class="footer">
-    <div class="backgroundColor">
+ <div class="footer font-size-1-5">
+    <div id="backgroundColor">
         <div class="frame">
             <div class="size-ft">
                 <div class="logo-ft">

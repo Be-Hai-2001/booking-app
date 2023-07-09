@@ -31,6 +31,7 @@ class roomtype extends Model
         return $this->hasMany(image::class);
     }
 
+    // public 
     public function services(){
         return $this->hasMany(tienichRoomtype::class);
     }

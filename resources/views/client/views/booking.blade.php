@@ -8,11 +8,11 @@
         @foreach ($details as $detail)
             <div class="d-name">
                 <input type="hidden" value="{{ $detail->tenKS }}" name="tenKS">
-                <h2 class="black_1_7">{{ $detail->tenKS }}</h2>
+                <h2 class="black_1_7 title-name">{{ $detail->tenKS }}</h2>
             </div>
             <div class="d-address">
                 <input type="hidden" name="diaChi" value="{{ $detail->tenPhuongXa }}, {{ $detail->tenQuanHuyen }}, {{ $detail->tenTp }}">
-                <p>{{ $detail->tenPhuongXa }}, {{ $detail->tenQuanHuyen }}, {{ $detail->tenTp }}</p>
+                <p style="margin-bottom: 4rem;"><b>Địa  Chỉ:  </b>{{ $detail->tenPhuongXa }}, {{ $detail->tenQuanHuyen }}, {{ $detail->tenTp }}  </p>
             </div>
             <div class="d-picture">
                 <div class="d-main-picture">
@@ -34,16 +34,12 @@
                     </div>
                     <div style="width:30%">
                         <div class="d-booking">
-                            {{-- <h3>Điểm nổi bật của chỗ nghỉ</h3> --}}
-                            {{-- <b>Hoàn hảo cho kỳ nghỉ 1 đêm</b>
-                            <p>Địa điểm hàng đầu: Được khách gần đây đánh giá cao (9,4 điểm)</p>
-                            <b>Các lựa chọn với:</b>
-                            <p>Nhìn ra hồ bơi</p>
-                            <p>Hồ bơi có tầm nhìn</p>
-                            <p>Hướng nhìn ra đường yên ắng</p>
-                            <p>Sân hiên</p>
-                            <p>Có chỗ đậu xe riêng miễn phí trong khuôn viên</p> --}}
-                            {{-- <button><b>Đặt ngay</b></button> --}}
+                            <h2 class="title-name" style=" margin-top: 0;">Tiện nghi nổi bậc của khách sạn</h2> 
+                            @foreach ($service_hotel as $service)
+                                <div style="font-size:2rem; font-weight:bold;padding-left: 2rem;"> {{ $service->tenTienIch }} </div>
+                                <div style=" padding-left: 3rem " class="content"> {!! $service->noiDung !!} </div>
+                            @endforeach
+                            <button><b>Đặt ngay</b></button>
                         </div>
                     </div>
                 </div>
@@ -53,11 +49,13 @@
             </div>
             <div class="d-introduce">
                 <div class="d-main-introduce">
-                    <div class="d-m-i-1">
-                        {!! $detail->content !!}
-                    </div>
                     <div class="d-m-i-2">
-                        <h3 class="black_1_7">Nơi lưu trú</h3>
+                        <h3 class="black_1_7"> <i class="fa-solid fa-people-roof title-name"></i> Nơi lưu trú</h3>
+                        <p>
+                            {!! $detail->content !!}
+                        </p>
+
+                        <p> {{ $detail->doiTra }} </p>
                     </div>
                 </div>
 
@@ -67,29 +65,34 @@
                     <form action="{{ route('postBookingRoom') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div>
-                            <h2 class="black_1_7">Phòng trống</h2> <br>
-                            <div>
-                                <b class="black_1_2">Ngày Nhận</b>:  <input type="date" name = "checkin" min="{{$nhan_phong}}" value=""/>
-                                <b class="black_1_2">Số đêm:</b> <input type="number" min="1" name="soDem" id="number_night" value="1" onchange="payment()">
-                                {{-- <input type="tel" name = "sdt"> --}}
+                            <h2 class="black_1_7" style=" position: absolute; margin-top: 7.6rem"> <i class="fa-solid fa-person-booth title-name"></i> Phòng trống</h2> <br>
+                            <div style="display: flex; justify-content: end; margin-bottom: 2rem;">
+                                <div> <p><b class="black_1_2">Nhận Phòng</b></p> <input class="input-number-size" type="date" name = "checkin" min="{{$nhan_phong}}" value=""/></div>
+                                <div style="width:3%"></div>
+                                <div> <p><b class="black_1_2">Số đêm:</b></p> <input class="input-number-size" type="number" min="1" name="soDem" id="number_night" value="1" onchange="payment()"></div>
                             </div>
                         </div>
                         <table class="d-room-table" >
-                            <tr class="d-r-t-top" style='font-size:1.2rem; background:rgb(33, 150, 243); color: white'>
+                            <tr class="d-r-t-top" style='height: 5rem;font-size: 1.6rem; background:rgb(33, 150, 243); color: white'>
                                 <th style="width:15%"><b>Loại chỗ nghỉ</b></th>
                                 <th style="width:8%"><b>Phù hợp cho</b></th>
                                 <th style="width:15%"><b>Giá hôm nay</b></th>
-                                <th style="width:20%"><b>Các lựa chọn</b></th>
+                                <th style="width:15%"><b>Các lựa chọn</b></th>
                                 <th style="width:5%"><b>Chọn số lượng</b></th>
                                 <th style="width:14%">Giường thêm</th>
                                 <th style="width:15%">Đơn giá</th>
-                                <th style="width:9%"><button style='font-size:1.2rem; background:aqua;border: none; box-shadow: 3px 0px 5px -1px;'><b>Đặt phòng</b></button></th>
+                                <th style="width:14%"><button class="submit-db-paymant"><b>Đặt phòng</b></button></th>
                             </tr>
+                            <div class="div-nd">
+                                <p>Tổng giá</p>
+                                <p>Tổng loại phòng</p>
+                                <p>Tổng giường thêm</p>
+                            </div>
                             <input type="hidden" value="{{ $detail->id }}" name="booking_hotel_id">
-                            <input type="text" value="" name="tongTien" id="tongTien">
+                            <input type="hidden" value="" name="tongTien" id="tongTien">
 
                             @foreach ($roomtypes as $room)
-                                <tr style='font-size:1.2rem; white-space: pre-line;background: white;'>
+                                <tr style='font-size:1.2rem; height: 8rem;background: white;'>
                                     <td>
                                         {{-- Cột tên loại phòng --}}
                                         <input type="hidden"  name="roomtype_id_{{ $room->id }}" value = "{{ $room->id }}">
@@ -124,10 +127,6 @@
                                         <input class="input-number donGia_roomtype" style="width:auto" type="hidden" value="0" name="donGia_{{ $room->id }}" onchange="payment()">
                                         <div class="donGia"> </div>
                                     </td>
-
-                                        <td class="center">
-                                            {{-- <a href=""  data-url="{{ route('getRoomtypeAPI',['id'=> $room->id]) }}" class="add_to_cart">Chọn</a> --}}
-                                        </td>
                                 </tr>
                             @endforeach
                             {{-- <input type="submit" class="add_to_cart"> --}}
@@ -153,12 +152,6 @@
                     <a href="#">Xem thêm thông tin chi tiết về sức khỏe & an toàn</a>
                 </div>
             </div>
-            <div class="d-tiennghi">
-                <div class="d-tn-name">
-                    <h2 class="black_1_7">Các tiện nghi của Hidden Gem</h2>
-                    <p>Tiện nghi tuyệt vời! Điểm đánh giá: 10</p>
-                </div>
-            </div>
         @endforeach
 
     </div>
@@ -181,5 +174,6 @@
 <script src="{{ asset('lib/slider/js/splide.min.js') }}"></script>
 <script src="{{ asset('app/js/display/client/payment.js') }}"></script>
 
+<div class="22222"></div>
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

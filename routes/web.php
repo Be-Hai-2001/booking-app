@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Clients\ChartController;
 use App\Http\Controllers\Clients\IndexController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ImageController;
@@ -10,8 +11,10 @@ use App\Http\Controllers\PhuonngXaController;
 use App\Http\Controllers\QuanHuyenController;
 use App\Http\Controllers\RoomtypeController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\ThanhPhoController;
 use App\Http\Controllers\TienichHotelController;
 use App\Http\Controllers\TienichRoomtypeController;
+use App\Http\Controllers\UserController;
 use App\Http\Livewire\CheckRequired;
 use App\Http\livewire\District;
 use App\Models\hotel;
@@ -77,10 +80,20 @@ Route::get('finAddress', [IndexController::class,'finAddress'])->name('finAddres
 
 //Trang admin
 Route::middleware('admin')->group(function(){
-    Route::get('/dashboard', function () {
-        return view('admin.layout.dashboard');
+
+    Route::get('/dashboard', function(){
+        return view('admin.tables.dashboard');
     })->name('dashboard');
-    Route::get('/tables',[TableController::class,'Tables'])->name('tables');
+
+    Route::get('/admin/hotel', [HotelController::class, 'index'])->name('admin-hotel');
+    Route::get('/admin/roomtype', [RoomtypeController::class, 'index'])->name('admin-roomtype');
+    Route::get('/admin/address', [QuanHuyenController::class, 'index'])->name('admin-address');
+    Route::get('/admin/profile', [UserController::class, 'index'])->name('admin-profile');
+    Route::get('/admin', function(){
+        return view('admin.tables.dashboard');
+    })->name('dashboard');
+
+    // Route::get('/tables',[TableController::class,'Tables'])->name('tables');
     Route::resource('hotels', HotelController::class);
 
 
@@ -96,7 +109,28 @@ Route::middleware('admin')->group(function(){
     Route::get('/image/roomtype/{id}',[ImageController::class,'createImageRoom']);
 });
 
-
 Route::get('/getRoomtypeAPI',[IndexController::class,'getRoomtypeAPI'])->name('getRoomtypeAPI');
+
+Route::post('/paymentvnpay',[App\Http\Controllers\Clients\OnlineCheckoutController::class,'paymentvnpay'])->name('paymentvnpay');
+
+//Liên hệ
+Route::post('gui-phan-hoi', [ChartController::class, 'postFeedback'])->name('postFeedback');
+
+Route::post('huy-dat-phong', [ChartController::class, 'postCancelReservation'])->name('postCancelReservation');
+
+
+
+
+
+Route::get('admin/billing/cancel-reservation', [ChartController::class, 'getAllCancelReservation'])->name('getAllCancelReservation');
+Route::get('admin/billing/feedback', [ChartController::class, 'getAllFeedback'])->name('getAllFeedback');
+Route::get('admin/billing/bill', [ChartController::class, 'getAllBill'])->name('getAllBill');
+Route::get('admin/billing/detail-booking/{id}',[IndexController::class, 'detailBooking']);
+
+
+
+
+
+
 
 

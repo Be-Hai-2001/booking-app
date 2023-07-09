@@ -225,3 +225,88 @@ body{
 .footer{
     margin-top: 3rem;
 }
+
+#form-lien-he #ho-ten-email {
+    display: flex;
+    justify-content: space-between;
+}
+
+#form-lien-he #ho-ten-email div{
+   width: 46%;
+}
+
+#form-lien-he input{
+    height: 3rem;
+    width: 100%;
+    /* background-color: #fff; */
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.container-fluid-lien-he form{
+    padding: 3rem 4rem;
+    font-size: 1.5rem;
+    font-variant: all-petite-caps;
+    font-weight: 700;
+}
+
+#form-lien-he div {
+    margin-bottom: 1.4rem;
+}
+
+#form-lien-he textarea{
+    width: 100%;
+    height: 8rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.div-form-lien-he{
+  background: #5f9ea017;
+}
+
+#form-lien-he div button{
+    font-size: 1.5rem;
+    color: white;
+    background: rgb(33, 150, 243);
+    border: none;
+    padding: 1rem;
+    border-radius: 9px;
+    width: 30rem;
+}
+
+.footer{
+  background-image: url("./images/keen-land.jpeg");
+  background-repeat: round;
+  height: 42rem;
+}
+
+#backgroundColor{
+  height: inherit;
+  background: #008b8ba8;
+
+}
+
+#uncheck-all{
+  font-size: 2.5rem;
+  border: none;
+  padding: 12px 80px;
+  border-radius: 6px;
+  background: slategray;
+  color: white;
+
+  text-align: center;
+}
+
+#check{
+  font-size: 1.8rem;
+}
+
+#form-tra-cuu-hd, #form-lienhe, #form-huy-db {
+  display: none;
+}

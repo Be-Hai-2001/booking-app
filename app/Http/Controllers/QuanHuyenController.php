@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\quanHuyen;
 use App\Http\Requests\StorequanHuyenRequest;
 use App\Http\Requests\UpdatequanHuyenRequest;
+use App\Models\phuonngXa;
 use App\Models\thanhPho;
 use App\Services\Interfaces\GetObjectInterface;
 use App\Services\Interfaces\SettingInterface;
@@ -26,7 +27,8 @@ class QuanHuyenController extends Controller
     public function index()
     {
         $lst = quanHuyen::all();
-        return response(view('admin.tables.quanhuyen',['district'=>$lst]));
+        $lst2 = phuonngXa::all();
+        return response(view('admin.tables.quanhuyen',['districts'=>$lst, 'wards'=>$lst2]));
     }
 
     /**
