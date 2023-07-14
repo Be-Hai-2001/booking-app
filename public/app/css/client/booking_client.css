@@ -285,7 +285,9 @@ input:focus {
     background: rgb(33, 150, 243);
     color: white;
     position: absolute;
-    margin-top: -16rem;
+    margin-top: 1rem;
+    border: none;
+    margin-left: 27.3%;
 }
 
 .submit-db-paymant{
@@ -297,16 +299,6 @@ input:focus {
     border-radius: 10px;
 }
 
-
-/* .submit-db-paymant{
-
-    position: relative;
-    animation: myfirst 7s linear 0s infinite ;
-  }
-  @keyframes myfirst {
-    0%   {color:rgb(33 150 243);transform: rotate(-10deg)}
-    25%  {color:black; transform: rotate(0deg)}
-    50%  {color:orange; transform: rotate(10deg)}
-    75%  {color:black;transform: rotate(0deg);}
-    100% {color:rgb(33 150 243); transform: rotate(-10deg);}
-} */
+.footer{
+    margin-top: 7rem;
+}

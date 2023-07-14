@@ -9,7 +9,11 @@
                     @foreach ($areas as $area)
                         <input type="checkbox" class="check-district" value="{{ $area->quan_huyen_id }}"> {{ $area->tenQuanHuyen }}<p class='bottom'></p>
                     @endforeach
-                        <div style="text-align: center; margin-top:2.5rem; margin-bottom: 5rem"><button id="uncheck-all" ><i class="fa-solid fa-filter-circle-xmark"></i></button></div>
+                        <div style="text-align: center; margin-top:2.5rem; margin-bottom: 5rem">
+                            <button id="uncheck-all" >
+                                Bỏ Chọn
+                            </button>
+                        </div>
                 </div>
             </div>
             <div class="promote-of-area" style="margin-top: 3rem">

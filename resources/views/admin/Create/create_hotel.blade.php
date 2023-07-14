@@ -2,35 +2,67 @@
 <h1 style="text-align: center">Thêm mới khách sạn</h1>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
-
+<a href="{{ route('dashboard') }}">Home</a>
 <form action="{{ route('hotels.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div style="display: flex">
         <div style="width:50%">
-            <label for="tenKS">Tên khách sạn:</label>
+            <label for="tenKS">Tên khách sạn: 
+                @error('tenKS')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
             <input name="tenKS"><br>
             {{-- @if ($errors->has('tenKS')){{$errors->first('tenKS')}}<br>@endif --}}
 
-            <label for="sdt">Số điện thoại:</label>
+            <label for="sdt">Số điện thoại:
+                @error('sdt')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
             <input name="sdt"><br>
 
-            <label for="tuoiThemGiuong">Tuổi thêm giường từ:</label>
+            <label for="tuoiThemGiuong">Tuổi thêm giường từ:
+                @error('tuoiThemGiuong')
+                <span>{{ $message }}</span>
+            @enderror
+            </label>
             <input name="tuoiThemGiuong"><br>
 
-            <label for="tuoiFree">Số tuổi miễn phí nhỏ hơn :</label>
+            <label for="tuoiFree">Số tuổi miễn phí nhỏ hơn :
+                @error('tuoiFree')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
             <input name="tuoiFree"><br>
 
-            <label for="soluong_free">Số lượng trẻ em miễn phí:</label>
+            <label for="soluong_free">Số lượng trẻ em miễn phí:
+                @error('soluong_free')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
             <input name="soluong_free"><br>
 
-            <label for="checkinCheckout">Thời gian nhận - trả phòng:</label>
+            <label for="checkinCheckout">Thời gian nhận - trả phòng:
+                @error('checkinCheckout')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
             <input name="checkinCheckout"><br>
 
 
-            <label for="doiTra">Quy định đổi trả phòng:</label>
+            <label for="doiTra">Quy định đổi trả phòng:
+                @error('doiTra')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
             <input name="doiTra"><br>
 
-            <label for="soSao">Số sao khách sạn:</label>
+            <label for="soSao">Số sao khách sạn:
+                @error('soSao')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
             <input name="soSao"><br>
         </div>
 
@@ -40,7 +72,11 @@
                 <textarea class="ckeditor form-control" name="content"></textarea><br>
             </div>
 
-            <label for="thanhPho">Thành phố:</label>
+            <label for="thanhPho">Thành phố:
+                @error('tenKS')
+                <span>{{ $message }}</span>
+            @enderror
+            </label>
             <select name="thanhPho" id="thanhPho" class="thanhPho">
                 <option value=""> -- Chọn tỉnh || thành phố --</option>
                 @foreach ($city as $city)
@@ -48,7 +84,11 @@
                 @endforeach
             </select><br>
 
-            <label for="quanHuyen">Quận - Huyện:</label>
+            <label for="quanHuyen">Quận - Huyện:
+                @error('quanHuyen')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
             <select name="quanHuyen" id="quanHuyen" class="quanHuyen">
                 <option value="">-- Chọn quận || huyện --</option>
                 {{-- @foreach ($district as $district)
@@ -56,7 +96,11 @@
                 @endforeach --}}
             </select><br>
 
-            <label for="phuongXa">Số nhà - tên đường - Phường:</label>
+            <label for="phuongXa">Số nhà - tên đường - Phường:
+                @error('phuongXa')
+                    <span>{{ $message }}</span>
+                @enderror
+            </label>
             <select name="phuongXa" id="phuongXa" class="phuongXa">
                 <option value="">-- Địa chỉ --</option>
             </select>

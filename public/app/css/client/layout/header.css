@@ -237,7 +237,7 @@ body{
 
 #form-lien-he input{
     height: 3rem;
-    width: 100%;
+    width: 85%;
     /* background-color: #fff; */
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -293,14 +293,20 @@ body{
 }
 
 #uncheck-all{
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   border: none;
   padding: 12px 80px;
   border-radius: 6px;
-  background: slategray;
+  background: deepskyblue;
   color: white;
 
   text-align: center;
+}
+
+#uncheck-all:hover{
+  background-color: red;
+  color: black;
+  font-weight: bold;
 }
 
 #check{
@@ -309,4 +315,63 @@ body{
 
 #form-tra-cuu-hd, #form-lienhe, #form-huy-db {
   display: none;
+}
+
+.btn-page{
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+.btn-page span, .btn-page a{
+  padding: 1rem;
+  /* color: deepskyblue; */
+}
+
+#tra-cuu{
+  display: flex;
+  margin: auto 10%;
+  font-size: 1.5rem;
+  line-height: 4rem
+}
+.content-tra-cuu .tt-tc{
+
+  margin-top: 2.5rem;
+
+}
+
+.content-tra-cuu {
+  width: 35%;
+  margin-top: 0.9rem;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 6px 20px 0px;
+  padding: 0px 3rem;
+  height: fit-content;
+
+}
+
+.content-khach-san .img {
+  width: 45%;
+  height: 25rem;
+}
+
+.content-khach-san .img img {
+  height: 25rem;
+  width: 30rem;
+}
+.content-khach-san .all-nd {
+  margin-top: 4rem;
+  display: flex;
+}
+
+.content-khach-san h2 {
+  margin-top: -1rem;
+  text-shadow: rgb(0, 0, 0) 2px 2px 4px;
+  color: blueviolet;
+}
+
+#tenKS-tracuu{
+  text-shadow: rgb(0, 0, 0) 2px 2px 4px;
+  color: blueviolet;
+  font-size: 3rem;
+  width: 55%;
+  margin-top: 0.9rem;
 }

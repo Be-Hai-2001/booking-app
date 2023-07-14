@@ -103,24 +103,24 @@
                     <div id="ho-ten-email">
                         <div>
                             <p> <a>Họ và tên</a> </p>
-                            <input type="text" name="ho_ten">
+                            <input type="text" name="ho_ten" required>
                         </div>
 
                         <div>
                             <p> <a>Căn cước công dân</a> </p>
-                            <input type="text" name="cccd">
+                            <input type="text" name="cccd" maxlength="12" required>
                         </div>
                     </div>
 
                     <div id="ho-ten-email">
                         <div>
                             <p> <a>Số điện thoại</a> </p>
-                            <input type="text" name="sdt">
+                            <input type="text" name="sdt" maxlength="12" required>
                         </div>
 
                         <div>
                             <p> <a>Mã hóa đơn</a></p>
-                            <input type="text" name="ma_hd">
+                            <input type="text" name="ma_hd" required>
                         </div>
                     </div>
 
@@ -142,17 +142,22 @@
             <!-- Form tra cứu hóa đơn -->
             <div id="form-tra-cuu-hd" class="div-form-lien-he">
 
-                <form action="" id="form-lien-he">
-
+                <form action="{{ route('postTraCuuHD') }}" method="POST" id="form-lien-he">
+                    @csrf
                     <div id="ho-ten-email">
                         <div>
-                            <p> <a>Căn cước công dân</a> </p>
-                            <input type="text" name="CCCD">
+                            <p> <a>Căn cước công dân/ Passport</a> </p>
+                            <input type="text" name="CCCD" maxlength="12" required>
                         </div>
 
                         <div>
                             <p> <a>Số điện thoại đặt phòng</a> </p>
-                        <input type="text" name="sdt">
+                            <input type="text" name="sdt" maxlength="12" required>
+                        </div>
+
+                        <div>
+                            <p> <a>Mã Hóa Đơn</a> </p>
+                            <input type="text" name="mahd" required>
                         </div>
                     </div>
 

@@ -13,9 +13,14 @@ class OnlineCheckoutController extends Controller
     public function paymentvnpay(){
 
         $last_record = bookingHotel::latest()->first()->toArray();
-        // dd($last_record);
+        $id = $last_record["id"].'/'.$last_record["sdt"].'/'.$last_record["CCCD"];
+        // $sdt = ;
+        // $cccd = ;
+        $url = "http://127.0.0.1:8000/tra-cuu-hoa-don/".$id;
+        // dd($url);
+        // dd($last_record["id"]);
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://127.0.0.1:8000/lien_he";
+        $vnp_Returnurl = $url;
         $vnp_TmnCode = "57SJAJIR";//Mã website tại VNPAY
         $vnp_HashSecret = "QALTUWPFMSYNLLLEMMWAESLAUYQTEYEH"; //Chuỗi bí mật
 

@@ -67,9 +67,15 @@
                         <div>
                             <h2 class="black_1_7" style=" position: absolute; margin-top: 7.6rem"> <i class="fa-solid fa-person-booth title-name"></i> Phòng trống</h2> <br>
                             <div style="display: flex; justify-content: end; margin-bottom: 2rem;">
-                                <div> <p><b class="black_1_2">Nhận Phòng</b></p> <input class="input-number-size" type="date" name = "checkin" min="{{$nhan_phong}}" value=""/></div>
+                                <div> 
+                                    <p><b class="black_1_2">Nhận Phòng</b></p> 
+                                    <input class="input-number-size" type="date" id="checkin-booking" onchange="showBooking()" name = "checkin" min="{{$nhan_phong}}" value=""/>
+                                </div>
                                 <div style="width:3%"></div>
-                                <div> <p><b class="black_1_2">Số đêm:</b></p> <input class="input-number-size" type="number" min="1" name="soDem" id="number_night" value="1" onchange="payment()"></div>
+                                <div>
+                                    <p><b class="black_1_2">Số đêm:</b></p> 
+                                    <input onclick="showBooking()" class="input-number-size" type="number" min="1" name="soDem" id="number_night" value="1" onchange="payment()">
+                                </div>
                             </div>
                         </div>
                         <table class="d-room-table" >
@@ -87,6 +93,9 @@
                                 <p>Tổng giá</p>
                                 <p>Tổng loại phòng</p>
                                 <p>Tổng giường thêm</p>
+                                <p>Ngày nhận phòng</p> <br>
+                                <i id="checkin-chucnang"></i>
+                                <p>Ngày trả phòng</p>
                             </div>
                             <input type="hidden" value="{{ $detail->id }}" name="booking_hotel_id">
                             <input type="hidden" value="" name="tongTien" id="tongTien">

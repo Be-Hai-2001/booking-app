@@ -78,11 +78,11 @@ class KhachSanImplement implements GetObjectInterface, SettingInterface {
     // Setting interface
     //Khách sạn
     public function create($request){
-       $request->validate( [
+        $rules = [
         'tuoiThemGiuong'=> 'required',
         'tuoiFree'=> 'required',
         'soluong_free'=> 'required',
-        'tenKS'=> 'required',
+        'tenKS'=> 'required|unique:hotels,tenKS',
         'sdt'=> 'required',
         'checkinCheckout'=> 'required',
         'doiTra'=> 'required',
@@ -91,9 +91,15 @@ class KhachSanImplement implements GetObjectInterface, SettingInterface {
         'quanHuyen'=> 'required',
         'phuongXa'=> 'required',
         'trangThai'=> 'required',
-    ]);
+        ];
+        
+        $messages = [
+            'required'=>'Không được bỏ trống..!',
+            'unique'=>'Đã tồn tại..!'
+        ];
 
-        // dd($rules);
+        $request->validate($rules, $messages);
+
         $hotel = hotel::create([
             'tuoiThemGiuong'=>$request->tuoiThemGiuong,
             'tuoiFree'=>$request->tuoiFree,
@@ -163,14 +169,18 @@ class KhachSanImplement implements GetObjectInterface, SettingInterface {
             'thanh_pho_id'=>'required',
             'tenQuanHuyen'=>'required'
         ];
-        $request->validate($rules);
+
+        $messages = [
+            'required'=>'Không được bỏ trống..!',
+        ];
+        $request->validate($rules, $messages);
 
         $district = quanHuyen::create([
             'thanh_pho_id'=>$request->thanh_pho_id,
             'tenQuanHuyen'=>$request->tenQuanHuyen
           ]);
         $district->save();
-        return redirect()->route('quanhuyens.index');
+        return redirect()->route('admin-address');
     }
     public function updateQH($request, $hotel){
 
@@ -185,7 +195,10 @@ class KhachSanImplement implements GetObjectInterface, SettingInterface {
             'quan_huyen_id'=>'required',
             'tenPhuongXa'=>'required'
         ];
-        $request->validate($rules);
+        $messages = [
+            'required'=>'Không được bỏ trống..!',
+        ];
+        $request->validate($rules, $messages);
 
         $district = phuonngXa::create([
             'quan_huyen_id'=>$request->quan_huyen_id,
@@ -193,7 +206,7 @@ class KhachSanImplement implements GetObjectInterface, SettingInterface {
           ]);
 
         $district->save();
-        return redirect()->route('phuongxas.index');
+        return redirect()->route('admin-address');
     }
     public function updatePX($request, $hotel){
 

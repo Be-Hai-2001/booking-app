@@ -13,7 +13,11 @@
                         <img class="edit-img" src="{{asset('storage')}}/{{ $hotel->images }}" alt="Lỗi load">
                     </div>
                     <div class="content-select">
-                    <div class="name" style="height:20%"><h1 style="  text-shadow: 2px 2px 4px #000000;" class="blue"><a style=" color: blueviolet;" href="/booking/detail/{{ $hotel->id }}">{{ $hotel->tenKS }}</a></h1></div>
+                    <div class="name" style="height:20%">
+                        <h1 style="  text-shadow: 2px 2px 4px #000000;" class="blue">
+                            <a style=" color: blueviolet;" href="/booking/detail/{{ $hotel->id }}">{{ $hotel->tenKS }}</a>
+                        </h1>
+                    </div>
                     <div class="address" style="height:10%; font-size:18px">
                          <b>Địa chỉ: </b>{{ $hotel->tenPhuongXa }}, {{ $hotel->tenQuanHuyen }}, {{ $hotel->tenTp }}
                     </div>
@@ -24,7 +28,7 @@
                     </div>
                 </div>
             @endforeach
-            <div>
+            <div class="btn-page">
                 {{  $hotels->links()  }}
             </div>
         </div>

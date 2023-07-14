@@ -8,6 +8,7 @@
         {{-- @foreach ($payments as $pay) --}}
             <input type="hidden" id="free" value="{{ $hotel->soluong_free }}" required>
             <input type="hidden" id="tenKS" value="{{ $hotel->tenKS }}">
+            <input type="hidden" id="hotel-id" value="{{ $hotel->id }}">
             <div id="main-payment">
                 <div id="top-payment" >
                     <i style="font-size: 2.76rem; color:rgb(33, 150, 243);" class="fa-solid fa-circle-check"></i>
@@ -34,8 +35,8 @@
                                 <input type="hidden" value="{{$checkin}}" id="checkin">
                             </div>
                         </div>
-                        <div>
-                            Thời gian: {{$hotel->checkinCheckout}}
+                        <div style="margin-top: 2rem;">
+                            <b>Thời gian:</b> {{$hotel->checkinCheckout}}
                         </div>
                         <hr>
                         <div id="tp-r-c">
@@ -63,8 +64,10 @@
                         <hr>
                         <div class="qdroom">
                             <p><Strong>Quy định số người</Strong></p>
-                            <div> Số lượng người lớn tối đa không vượt quá <a id="nglon"></a> người,
-                                số lượng trẽ em dưới {{ $hotel->tuoiFree }} tuổi được miễn phí tối đa <a id="trEM"></a> người.
+                            <div> Số lượng người lớn tối đa không vượt quá <b id="nglon"></b> người.
+                                Số lượng trẻ em dưới <b>{{ $hotel->tuoiFree }}</b> tuổi được miễn phí tối đa <b id="trEM"></b> người.
+                                Trẻ nhỏ độ tuổi dưới <b>{{ $hotel->tuoiThemGiuong }}</b> sẽ phải bắt buộc phụ thu giường thêm,
+                                 số lượng giường thêm tối đa được cho phép sẽ là <b id="gthem"></b> giường.
                             </div>
                         </div>
                     </div>
@@ -90,16 +93,16 @@
                     <div id="input-infor">
                         <p style="width:70%">
                             <i class="fa-solid fa-blender-phone"></i> <span>Số điện thoại</span> <br>
-                            <input style="width:80%; height: 2.4rem; border-radius:5px; margin-top:1rem;" type="text" id = "sdt" required>
+                            <input style="width:80%; height: 2.4rem; border-radius:5px; margin-top:1rem;" type="Number" id = "sdt" maxlength="11" required>
                         </p>
                         <p style="width:60%; text-alight:end">
-                            <i class="fa-solid fa-user-secret"></i> <span>Căn cước công dân</span> <br>
-                            <input style="width:100%; height: 2.4rem; border-radius:5px; margin-top:1rem;" type="text" id="CCCD" required>
+                            <i class="fa-solid fa-user-secret"></i> <span>Căn cước công dân/ Passport</span> <br>
+                            <input style="width:100%; height: 2.4rem; border-radius:5px; margin-top:1rem;" type="text" maxlength="12" id="CCCD" required>
                         </p>
                     </div>
 
                     <div class="noidung">
-                        <i class="fa-solid fa-pen"></i> <span>Yêu cầu đặt biệt</span>
+                        <i class="fa-solid fa-pen"></i> <span>Yêu cầu đặc biệt</span>
                         <textarea  id="content" style="width:100%; margin-top:1rem; font-size: 1.6rem;" rows="8"></textarea>
                     </div>
                     <div>
@@ -132,7 +135,7 @@
                             <pre><i class="fa-sharp fa-solid fa-check"></i> Phù hợp cho: {{$arrCart["sucChuaMax"]}} người lớn</pre>
                             <input type="hidden" class="donGia" value="{{ $arrCart["donGia"] }}" required>
                             <input type="hidden" class="sucChuaMax" value="{{ $arrCart["sucChuaMax"] }}" required>
-                            {{-- <input type="hidden" class="soluong_free" value="{{ $arrCart["soluong_free"] }}" required> --}}
+                            <input type="hidden" class="soluong_gth" value="{{ $arrCart["soluong_gth"] }}" required>
 
                         </div>
                     </div>
@@ -152,32 +155,37 @@
     let totalBed = 0;
     let totalpeople = 0;
     let totalFree = 0;
+    let totalRoomExtra = 0;
 
     let sl = document.getElementsByClassName('SL_Loaiphong');
     let bed = document.getElementsByClassName('SL_giuongThem');
     let people = document.getElementsByClassName('sucChuaMax');
+    let soluongGth = document.getElementsByClassName('soluong_gth');
+
     // let slp = 0;
+    let free = document.getElementById('free').value;
 
     for(i=0; i< sl.length; i++){
 
         total += Number(sl[i].value);
         totalBed += Number(bed[i].value);
-        totalpeople += Number(people[i].value);
-
+        totalpeople += Number(people[i].value) * Number(sl[i].value);
+        totalRoomExtra += Number(soluongGth[i].value);
     }
-    //Ô input người lớn
+    //Ô input thông tin chi tiết giá trị max-min
     document.getElementById('Sl-nguoiLon').value = total;
     document.getElementById("Sl-nguoiLon").setAttribute("min", total);
+    document.getElementById("SL_nguoiNho").setAttribute("max", totalRoomExtra);
+    document.getElementById("Sl-nguoiLon").setAttribute("max", totalpeople);
+    document.getElementById("SL_treEm").setAttribute("max", free);
 
-    // Giá trị loại phòng
+    // Giá trị loại phòng bên quy định số người
     document.getElementById('sl-lp').innerText = total;
     document.getElementById('sl-gt').innerText = totalBed;
     document.getElementById('nglon').innerText = totalpeople;
+    document.getElementById('gthem').innerText = totalRoomExtra;
 
-    let free = document.getElementById('free').value;
-    console.log(free);
     document.getElementById('trEM').innerText = free;
-    console.log(total);
 
 // $(function($){
     $(function($){
@@ -202,6 +210,7 @@
             }
             var arr_hd = [{
                 'user_id':'',
+                'hotel_id': document.getElementById('hotel-id').value,
                 'tenKS': document.getElementById('tenKS').value,
                 'sdt': document.getElementById('sdt').value,
                 'CCCD': document.getElementById('CCCD').value,

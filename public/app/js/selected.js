@@ -33,19 +33,7 @@ function select(){
 select();
 
 function text(){
-    // let s1 = document.getElementsByClassName('s1');
-    // for(i = 0; i <s1.length; i++){
-
-    // }
-    // let s2 = document.getElementsByClassName('s2');
-    // for(i = 0; i <s2.length; i++){
-
-    // }
-    //     let s3 = document.getElementsByClassName('s3');
-    //     for(i = 0; i <s3.length; i++){
-
-    //     }
-        let blue = document.getElementsByClassName('blue');
+    let blue = document.getElementsByClassName('blue');
     for(i = 0; i <blue.length; i++){
         blue[i].style.color = 'blueviolet';
     }

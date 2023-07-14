@@ -43,7 +43,10 @@ class ChartController extends Controller
 
     function getAllBill() {
         $lst = bookingHotel::all();
-        return view('admin.tables.bill_table', ['lst'=>$lst]);
+
+        $lstSortByDesc = $lst->sortByDesc("created_at");
+
+        return view('admin.tables.bill_table', ['lst'=>$lstSortByDesc]);
     }
 
     function getAllFeedback() {
@@ -74,4 +77,28 @@ class ChartController extends Controller
         // dd($hotels);
         return response()->json($hotels, 200);
     }
+
+    function postTraCuuHD(Request $request) {
+        // dd($request->mahd);
+
+        $hd = bookingHotel::Where('booking_hotels.id', $request->mahd)
+            ->Join('hotels', 'hotels.tenKS', '=', 'booking_hotels.tenKS')
+            ->get(['booking_hotels.*','hotels.doiTra', 'hotels.checkinCheckout']);
+
+        $roomtypes = detailBooking::Join('roomtypes', 'roomtypes.id', '=', 'detail_bookings.roomtype_id')
+            ->Join('images', 'images.roomtype_id', '=', 'detail_bookings.roomtype_id')
+            ->Where('detail_bookings.booking_hotel_id', '=', $request->mahd)
+            ->Where('images.avt', 1)
+            ->get(['roomtypes.*', 'images.images', 'detail_bookings.SL_Loaiphong', 'detail_bookings.giaTheoNgay']);
+
+        // $distinct = $roomtypes->DISTINCT();
+        // dd($roomtypes);
+        // $billings = bookingHotel::Join()
+        return view('client.views.tra_cuu_hd', [
+            'billings'=>$hd,
+            'roomtypes'=>$roomtypes
+        ]);
+        
+    }
+
 }

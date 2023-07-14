@@ -43,13 +43,13 @@
                 <div class="cl-btn">
                     <button onclick="handelOnclickBilling('admin-billing')"> <i class="fa-solid fa-file-invoice-dollar" style="padding-left: 1.3rem; padding-right: 1.3rem;"></i> Billing </button>
                     <div class="table" id="admin-billing" style="display: none; margin-top:1rem">
-                        <i class="fa-brands fa-hornbill"></i> <a href="{{ route('getAllBill') }}"> Bill </a> <br>
+                        <i class="fa-brands fa-hornbill"></i> <a href="{{ route('show-all-billing') }}"> Bill </a> <br>
                         <i class="fa-regular fa-message"></i> <a href="{{ route('getAllFeedback' )}}"> Feedback </a> <br>
                         <i class="fa-regular fa-rectangle-xmark"></i> <a href="{{ route('getAllCancelReservation') }}"> Cancel Reservation </a> <br>
                     </div>
                 </div>
 
-                <div class="cl-btn">
+                {{-- <div class="cl-btn">
                     <button> <i class="fa-solid fa-id-card-clip"></i> <a style="text-decoration: none" href=" {{ route('admin-profile') }} "> Profile </a> </button>
                 </div>
                 <div class="cl-btn">
@@ -61,7 +61,7 @@
                         <i class="fa-solid fa-chart-pie"></i> <a href="{{ route('admin-address' )}}"> Revenue Statistics </a> <br>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </header>
 
         <main style="width:80%">
@@ -69,10 +69,13 @@
             @yield('main-admin')
 
         </main>
+
+        {{-- @include('') --}}
+
     </div>
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 <script src="{{ asset("app/js/display/admin/main.js") }}"></script>
 
 </html>

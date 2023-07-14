@@ -16,9 +16,6 @@ function frame(){
 
 frame();
 
-
-
-
 let visibleQuickView = document.getElementById('div-quick-view');
 let QuickView = document.getElementById('quick-view');
 
@@ -32,23 +29,33 @@ function replaceImg(id){
     document.getElementById('replace-main').setAttribute('src',img);
 }
 
-alert(1);
-// function formHidle(id){
-//     var click = document.getElementById(id);
 
-//     if(id == 'box-shadow-contact'){
-//         document.getElementById('form-lienhe').style.display = 'block';
+function formatDate(date) {
+    var year = date.getFullYear().toString();
+    var month = (date.getMonth() + 101).toString().substring(1);
+    var day = (date.getDate() + 100).toString().substring(1);
+    return month + '/' + day + '/' + year;
+}
 
-//         document.getElementById('form-lienhe').style.display = 'none';
-//         document.getElementById('form-lienhe').style.display = 'none';
+function showBooking() {
+    // var sdem = document.getElementById('number_night').value;
+    // let dateCheckIn = document.getElementById('checkin-booking').value;
+    // let dateCheckOut = document.getElementById('number_night').value;
+    // // var dateCheckInF = new Date(dateCheckIn).toLocaleDateString('en-GB');
+    
+    // const date = new Date(dateCheckIn);
+    // const date2 = new Date(dateCheckOut);
 
-//     } else if(id == 'destroy-booking') {
+    // var a = new Date((date2 - date) * 1000);
 
-//     }
-//     else if( id == '') {
+    // var b = formatDate(a);
+    // console.log(b);
 
-//     }
-//     else{
+    // Lấy date ngày hiện chọn
 
-//     }
-// }
+    // Xuất kết quả ra màn hình
+    // document.getElementById('checkin-chucnang').innerText = dateCheckIn;
+}
+
+showBooking();
+

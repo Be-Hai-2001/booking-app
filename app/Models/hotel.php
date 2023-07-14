@@ -17,7 +17,7 @@ class hotel extends Model
         'tuoiThemGiuong',
         'tuoiFree',
         'soluong_free',
-        'tenKs',
+        'tenKS',
         'sdt',
         'checkinCheckout',
         'doiTra',

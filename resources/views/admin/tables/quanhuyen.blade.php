@@ -7,7 +7,7 @@
 
     <div style="display: flex;  justify-content: space-between;">
         <div class="table-main-right" style="width:50%; margin-top: 0;">
-            <div class="create" style="margin-left: 0; margin-top: 5rem;"><a href="{{ route('roomtypes.create') }}">Thêm Quận
+            <div class="create" style="margin-left: 0; margin-top: 5rem;"><a href="{{ route('quanhuyens.create') }}">Thêm Quận
                     Huyện</a></div>
             <table>
                 <tr class="title-admin-table">
@@ -38,7 +38,7 @@
             </table>
         </div>
         <div class="table-main-right" style="width:50%; margin-top: 0;">
-            <div class="create" style="margin-left: 0 ; margin-top: 5rem;"><a href="{{ route('roomtypes.create') }}">Thêm
+            <div class="create" style="margin-left: 0 ; margin-top: 5rem;"><a href="{{ route('phuongxas.create') }}">Thêm
                     Phường Xã</a></div>
             <table>
                 <tr class="title-admin-table">

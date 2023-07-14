@@ -35,3 +35,7 @@ Route::put('/admin/update-trang-thai-user/{id}', [IndexController::class, 'updat
 
 Route::get('/admin/get-user-all', [IndexController::class, 'getUserAll']);
 
+
+
+
+

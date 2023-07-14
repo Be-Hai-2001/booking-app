@@ -23,7 +23,8 @@ class bookingHotel extends Model
         'user_id',
         'CCCD',
         'content',
-        'tenKS'
+        'tenKS',
+        'hotel_id'
     ];
 
     public function detailBooking(){

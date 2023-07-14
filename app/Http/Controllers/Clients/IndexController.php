@@ -171,7 +171,7 @@ class IndexController extends Controller
 
         //Tạo mảng khác sạn
         $arr =  $request->request;
-        $ngayDP= Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString();
+        $ngayDP= Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
         $arr = $arr->all();
         // Lấy khách sạn
         $hotels = DB::table('hotels')
@@ -228,9 +228,13 @@ class IndexController extends Controller
                 unset($arrCarts[$key]);
             }
         }
-        $arr = [];
+        // dd($arrCarts);
+
+
+        // $arrId = [];
         foreach($arrCarts as $val){
             $name = roomtype::where('id',$val['roomtype_id'])->get();
+            $arrId = $val['roomtype_id'];
             $img = image::where('roomtype_id',$val['roomtype_id'])->select('images')->first();
             // dd($images);
             foreach($name as $item){
@@ -238,7 +242,7 @@ class IndexController extends Controller
                 $val['tenLoai'] = $item->tenLoai;
                 $val['sucChuaMax'] = $item->sucChuaMax;
 
-                // $va['soluong_free'] = $item->soluong_free;
+                $val['soluong_gth'] = $item->slGiuongThem;
                 $val['images'] = $img->images  ?? 'upload\images\logoDulich.png';
 
                 // dd($val['images']);
@@ -247,7 +251,8 @@ class IndexController extends Controller
             // dd($val['tenLoai']);
             array_push($lst, $val);
         }
-        // dd($lst);
+        //    dd($ngayDP->toDateString());
+        // dd($ngayDP.toDateString());
         return view('client.views.payment', [
             // Khách sạn
             'hotels'=>$hotels,
@@ -307,6 +312,7 @@ class IndexController extends Controller
         //Thêm một hóa đơn
         bookingHotel::create([
             'user_id'=>$request->bill[0]['user_id'],
+            'hotel_id'=>$request->bill[0]['hotel_id'],
             'tenKS'=>$request->bill[0]['tenKS'],
             'sdt'=>$request->bill[0]['sdt'],
             'CCCD'=>$request->bill[0]['CCCD'],

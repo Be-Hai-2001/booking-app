@@ -89,7 +89,7 @@
 
         {{-- Section 5 --}}
         <div class="top-booking">
-            <div class="txt">   Khách sạn nổi bậc   </div>
+            <div class="txt">   Khách sạn nổi bật   </div>
             <section class="splide edit-slide" aria-label="Restriction Example" style="height: 30rem;">
                     <div class="splide__track">
                         <ul class="splide__list">

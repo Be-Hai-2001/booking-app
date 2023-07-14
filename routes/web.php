@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminHotelController;
 use App\Http\Controllers\Clients\ChartController;
 use App\Http\Controllers\Clients\IndexController;
 use App\Http\Controllers\HotelController;
@@ -118,8 +119,9 @@ Route::post('gui-phan-hoi', [ChartController::class, 'postFeedback'])->name('pos
 
 Route::post('huy-dat-phong', [ChartController::class, 'postCancelReservation'])->name('postCancelReservation');
 
+// Route::post('tra-cuu-hoa-don', [ChartController::class, 'postTraCuuHD'])->name('postTraCuuHD');
 
-
+Route::match(['get', 'post'], '/tra-cuu-hoa-don/{mahd?}/{sdt?}/{CCCD?}', [ChartController::class, 'postTraCuuHD'])->name('postTraCuuHD');
 
 
 Route::get('admin/billing/cancel-reservation', [ChartController::class, 'getAllCancelReservation'])->name('getAllCancelReservation');
@@ -127,6 +129,19 @@ Route::get('admin/billing/feedback', [ChartController::class, 'getAllFeedback'])
 Route::get('admin/billing/bill', [ChartController::class, 'getAllBill'])->name('getAllBill');
 Route::get('admin/billing/detail-booking/{id}',[IndexController::class, 'detailBooking']);
 
+
+
+
+
+
+//Admin khách sạn
+Route::get('/admin-hotel/{hotel?}', function() {
+    return view("adminHotel.master");
+});
+
+Route::get('/admin-hotel/biiling/{hotel_id?}',[AdminHotelController::class, 'showAllBilling'])->name('show-all-billing');
+Route::get('/admin-hotel/roomtype/{hotel_id?}',[AdminHotelController::class, 'showRoomtype'])->name('show-all-roomtype');
+Route::get('/admin-hotel/hotel/{hotel_id?}',[AdminHotelController::class, 'showHotel'])->name('show-all-hotel');
 
 
 
